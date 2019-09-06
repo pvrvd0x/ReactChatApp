@@ -1,16 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Input, Empty } from 'antd';
 import { orderBy } from 'lodash';
+
+import './Dialogs.scss';
 
 import { DialogsItem } from '../';
 
-const Dialogs = ({items, myId}) => (
+const Dialogs = ({items, myId, onSearch, inputValue}) => (
     <div className="dialogs">
-        {orderBy(items, ['createdAt'], ['desc']).map(item => (
+        <div className="chat__sidebar-search">
+            <Input.Search
+                placeholder='Search for dialogs'
+                onChange={e => onSearch(e.target.value)}
+                value={inputValue}/>
+        </div>
+        {items.length ? orderBy(items, ['createdAt'], ['desc']).map(item => (
             <DialogsItem
                 key={item._id}
                 {...item}
-                isMe={item.user._id === myId}/>))}
+                isMe={item.user._id === myId}/>))
+            : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
     </div>
 );
 

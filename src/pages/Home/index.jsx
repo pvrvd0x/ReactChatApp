@@ -1,85 +1,47 @@
 import React from 'react';
+import { Icon } from 'antd';
 
-import { Message, Dialogs } from '../../components';
+import { Messages, ChatInput, Status } from 'components';
+import { Dialogs } from 'containers';
 
 import './Home.scss';
 
 const Home = () => (
     <section className="home">
-        <Dialogs 
-        myId={0}
-        items={[{
-            _id: Math.random(),
-            createdAt   : new Date(2019, 5, 2),
-            content     : 'Fuck you nigga',
-            unchecked   : 0,
-            user: {
-                _id     : 0,
-                fullName: 'Frodo',
-                avatar  : 'https://avatarfiles.alphacoders.com/865/86518.png',
-                isOnline: true,
-            },
-            }, {
-            _id         : Math.random(),
-            createdAt   : new Date(),
-            content     : 'No Fuck you nigga',
-            unchecked   : 2,
-            user: {
-                _id     : 1,
-                fullName: 'Ceaser',
-                avatar  : 'https://avatoon.net/wp-content/uploads/2019/05/Szilagyi-Zoltan-Avatar-Small-300x300.jpg',
-                isOnline: true,
-            },
-        }]}/>
-        
-        <Message
-            avatar='https://avatarfiles.alphacoders.com/865/86518.png'
-            text='Я ебу коров'
-            date={new Date(2019, 7, 26, 15)}
-            isChecked={true}
-            attachments={[
-                {
-                    filename: 'image1.jpg',
-                    url: 'https://source.unsplash.com/100x100/?random=1&nature,water'
-                },
-                {
-                    filename: 'image2.jpg',
-                    url: 'https://source.unsplash.com/100x100/?random=2&nature,water'
-                },
-                {
-                    filename: 'image3.jpg',
-                    url: 'https://source.unsplash.com/100x100/?random=3&nature,water'
-                },
-            ]}/>
-        <Message
-            avatar='https://avatarfiles.alphacoders.com/865/86518.png'
-            audio='https://notificationsounds.com/soundfiles/cbcb58ac2e496207586df2854b17995f/file-sounds-1103-quite-impressed.mp3'
-            date={new Date(2019, 7, 26, 15)}/>
-        <Message
-            avatar='https://avatoon.net/wp-content/uploads/2019/05/Szilagyi-Zoltan-Avatar-Small-300x300.jpg'
-            text='А я нет'
-            date={new Date(2019, 7, 26, 15)}
-            isMe/>
-        <Message
-            avatar='https://avatoon.net/wp-content/uploads/2019/05/Szilagyi-Zoltan-Avatar-Small-300x300.jpg'
-            text='НЫАААААААААААААААААААААААААААААА'
-            date={new Date(2019, 7, 26, 15)}
-            isMe/>
-        <Message
-            avatar='https://avatoon.net/wp-content/uploads/2019/05/Szilagyi-Zoltan-Avatar-Small-300x300.jpg'
-            text=''
-            date={new Date(2019, 7, 26, 15)}
-            isTyping/>
-        <Message
-            avatar='https://avatoon.net/wp-content/uploads/2019/05/Szilagyi-Zoltan-Avatar-Small-300x300.jpg'
-            text=''
-            date={new Date(2019, 7, 26, 15)}
-            attachments={[
-                {
-                    filename: 'image1.jpg',
-                    url: 'https://source.unsplash.com/100x100/?random=1&nature,water'
-                },
-            ]}/>}
+        <div className="chat">
+            <div className="chat__sidebar">
+                <div className="chat__sidebar-header">
+                    <div>
+                        <Icon type="team" style={{color: 'rgba(0,0,0,.6)'}}/>
+                            <span>
+                                Dialogs List
+                            </span>
+                    </div>
+                    <Icon type="form" style={{color: 'rgba(0,0,0,.6)'}}/>
+                </div>
+
+                <div className="chat__sidebar-dialogs">
+                    <Dialogs 
+                        myId={0}
+                        items={[]}/>
+                </div>
+            </div>
+            <div className="chat__dialog">
+                <div className="chat__dialog-header">
+                    <div className="chat__dialog-header-info">
+                        <b className="chat__dialog-fullname">Yebushi loshadey</b>
+                        <Status/>
+                    </div>
+                    <div className="chat__dialog-options-wrapper">
+                        <button className="chat__dialog-options"></button>
+                    </div>
+                </div>
+                <div className="chat__dialog-messages">
+                    <Messages />
+                </div>
+                <ChatInput />
+            </div>
+        </div>
     </section>
 );
 

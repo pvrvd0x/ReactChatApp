@@ -2,6 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import { format, isToday } from 'date-fns';
 
+import { Avatar } from '../';
+
 import { IconChecked } from '../';
 import './DialogsItem.scss';
 
@@ -19,24 +21,12 @@ const getDate = time => {
     }
 }
 
-const getAvatar = user => {
-    if (user.avatar) {
-        return (
-            <img
-                src={user.avatar}
-                alt={`${user.fullName} avatar`}/>
-        )
-    } else {
-        //Gradient Avatar
-    }
-}
-
 const DialogsItem = ({ user, createdAt, content, unchecked,  isMe }) => (
     <div className={classNames('dialogs__item', {
         'dialogs__item--online': user.isOnline
         })}>
         <div className="dialogs__item-avatar">
-            {getAvatar(user)}
+            <Avatar user={user} />
         </div>
         <div className="dialogs__item-content">
             <div className="dialogs__item-content-top">

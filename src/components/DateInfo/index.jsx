@@ -7,7 +7,7 @@ const DateInfo = ({ date }) => (
 )
 
 DateInfo.propTypes = {
-    date: PropTypes.object
+    date: PropTypes.string
 };
 
 export default DateInfo;

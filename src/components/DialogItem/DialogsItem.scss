@@ -1,12 +1,18 @@
 @import '~styles/variables';
 
 .dialogs {
-    width: 300px;
-
     &__item {
         $item: &;
         display: flex;
-        margin-bottom: 10px;
+        padding: 10px;
+        transition: background-color .2s ease-in;
+        cursor: pointer;
+        border-radius: 5px;
+
+        &.active,
+        &:hover {
+            background-color: #f4f7ff;
+        }
 
         &--online {
             #{$item}-avatar {
@@ -16,10 +22,10 @@
                     position: absolute;
                     content: '';
                     display: block;
-                    width: 20px;
-                    height: 20px;
+                    width: 15px;
+                    height: 15px;
                     background-color: $green;
-                    border: 3px solid #fff;
+                    border: 2px solid #fff;
                     border-radius: 50%;
                     right: 0;
                     bottom: 0;

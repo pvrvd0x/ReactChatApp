@@ -18,13 +18,14 @@
 
     #{$self}__audio {
       &-progress {
-        width: 30%;
+        width: 0;
         height: 100%;
         position: absolute;
         top: 0;
         left: 0;
         background-color: #971499;
         z-index: 1;
+        transition: width .3s ease;
       }
 
       &-info {
@@ -71,6 +72,11 @@
 
   &--isme {
     flex-direction: row-reverse;
+
+    .message__audio-duration {
+        opacity: 1;
+        color: #000000;
+    }
 
     #{$self}__icon-unchecked,
     #{$self}__icon-checked {
