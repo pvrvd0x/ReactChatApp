@@ -1,0 +1,8 @@
+@import '~styles/variables';
+
+.button {
+  &--large {
+    height: 56px;
+    width: 100%;
+  }
+}
