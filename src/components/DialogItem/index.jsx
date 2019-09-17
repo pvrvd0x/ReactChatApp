@@ -8,6 +8,7 @@ import { IconChecked } from '../';
 import './DialogsItem.scss';
 
 const getDate = time => {
+    time = new Date(time);
     if (isToday(time)) {
         return format(
             time,
@@ -19,12 +20,13 @@ const getDate = time => {
             'MM.dd.yyyy'
         )
     }
-}
+};
 
-const DialogsItem = ({ user, createdAt, content, unchecked,  isMe }) => (
+const DialogsItem = ({ _id, user, createdAt, content, unchecked,  isMe, onSelect }) => (
     <div className={classNames('dialogs__item', {
         'dialogs__item--online': user.isOnline
-        })}>
+        })}
+        onClick={onSelect.bind(this, _id)}>
         <div className="dialogs__item-avatar">
             <Avatar user={user} />
         </div>

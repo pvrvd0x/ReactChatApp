@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { DateInfo, IconChecked } from '../';
+import { DateInfo, IconChecked, Avatar } from '../';
 import { convertCurrentTime } from '../../utils/helpers';
 
 import waveSvg from '../../assets/img/wave.svg';
@@ -13,7 +13,7 @@ import pauseSvg from '../../assets/img/pause.svg';
 import './Message.scss';
 
 const Message = ({
-    avatar,
+    user,
     text,
     date,
     isMe,
@@ -36,7 +36,7 @@ const Message = ({
     }
 
     useEffect(() => {
-        const audioElement = audioElem.current
+        const audioElement = audioElem.current;
         if (audioElement) {
             audioElement.addEventListener('playing', () => {
                 setPlaying(true);
@@ -55,7 +55,7 @@ const Message = ({
                 const duration = audioElement.duration || 0;
                 setCurrentTime(audioElement.currentTime);
                 setProgress((audioElement.currentTime / duration) * 100)
-            }, false)
+            }, false);
 
             audioElement.addEventListener('loadeddata', () => {
                 setCurrentTime(audioElement.duration);
@@ -72,7 +72,7 @@ const Message = ({
         <div className="message__content">
             <IconChecked isMe={isMe} isChecked={isChecked}/>
             <div className="message__avatar">
-                <img src={avatar} alt={`User`}/>
+                <Avatar user={user}/>
             </div>
             <div className="message__info">
                 { (audio || (!attachments || (attachments && (attachments.length !== 1)))) &&
@@ -86,7 +86,7 @@ const Message = ({
                     { audio && <div className='message__audio'>
                         <audio ref={audioElem} src={audio} preload='auto'/>
                         <div className='message__audio-progress'
-                            style={{width: progress + '%'}}></div>
+                            style={{width: progress + '%'}}/>
                         <div className="message__audio-info">
                             <div className="message__audio-btn">
                                 <button onClick={togglePlay}>

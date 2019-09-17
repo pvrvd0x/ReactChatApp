@@ -185,9 +185,11 @@
     display: flex;
     flex-direction: column-reverse;
 
+    & > .avatar--empty,
     img {
       border-radius: 50px;
       width: 33px;
+      font-size: 18px;
       height: 33px;
       margin-right: 13px;
     }

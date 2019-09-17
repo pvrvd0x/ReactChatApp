@@ -1,4 +1,11 @@
 .dialogs {
+    &-wrapper {
+        height: 100%;
+    }
+
+    height: calc(100% - 100px);
+    overflow: auto;
+
     &__search {
         margin-bottom: 20px;
     }

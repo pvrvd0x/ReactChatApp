@@ -1,8 +1,8 @@
 import React from 'react';
 import { Icon } from 'antd';
 
-import { Messages, ChatInput, Status } from 'components';
-import { Dialogs } from 'containers';
+import { ChatInput, Status } from 'components';
+import { Messages, Dialogs } from 'containers';
 
 import './Home.scss';
 
@@ -22,8 +22,7 @@ const Home = () => (
 
                 <div className="chat__sidebar-dialogs">
                     <Dialogs 
-                        myId={0}
-                        items={[]}/>
+                        myId={0}/>
                 </div>
             </div>
             <div className="chat__dialog">

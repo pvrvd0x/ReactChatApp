@@ -28,8 +28,7 @@
         }
 
         &-dialogs {
-            height: calc(100% - 100px);
-            overflow: auto;
+            height: 100%;
         }
     }
 
@@ -41,6 +40,7 @@
             padding: 10px;
             border: 1px solid rgba(0, 0, 0, .15);
             border-left: 0;
+            border-right: 0;
             margin-bottom: 5px;
             border-radius: 2px;
         }
@@ -102,9 +102,14 @@
             height: calc(100% - 130px);
         }
 
-        .ant-empty {
+        .ant-empty,
+        .ant-spin {
             position: relative;
-            top: 35%;
+            top: 25vh;
+        }
+
+        .ant-spin {
+            left: 25vh;
         }
     }
 }

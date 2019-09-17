@@ -29,6 +29,6 @@ const Avatar = ({ user }) => {
 Avatar.propTypes = {
     avatar: PropTypes.string,
     fullName: PropTypes.string
-}
+};
 
 export default Avatar;
