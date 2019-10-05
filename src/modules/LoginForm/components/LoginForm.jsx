@@ -1,9 +1,9 @@
 import React from 'react';
 import {Form, Icon, Input} from "antd";
-import {Button, Block} from "../../../components";
 import { Link } from 'react-router-dom';
 
-import { validateField } from '../../../utils/helpers';
+import {Button, Block} from "components";
+import { validateField } from 'utils/helpers';
 
 const LoginForm = props => {
     const {
@@ -13,6 +13,8 @@ const LoginForm = props => {
         handleChange,
         handleBlur,
         handleSubmit,
+        isValid,
+        isSubmitting,
     } = props;
 
     return (
@@ -27,7 +29,6 @@ const LoginForm = props => {
                         validateStatus={
                             validateField(touched, errors, 'email')
                         }
-                        hasFeedback
                         help={
                             !touched.email ? '' : errors.email || ''
                         }>
@@ -44,7 +45,6 @@ const LoginForm = props => {
                         validateStatus={
                             validateField(touched, errors, 'password')
                         }
-                        hasFeedback
                         help={!touched.password ? '' : errors.password || ''}>
                         <Input
                             id='password'
@@ -57,7 +57,9 @@ const LoginForm = props => {
                             onBlur={handleBlur}/>
                     </Form.Item>
                     <Form.Item>
+                        {isSubmitting && !isValid && <span>Error!</span>}
                         <Button
+                                disabled={isSubmitting}
                                 onClick={handleSubmit}
                                 size='large'
                                 type='primary'
@@ -68,7 +70,7 @@ const LoginForm = props => {
                     </Form.Item>
                     <Form.Item>
                         <Link to='register'
-                              className='auth__register-link'>
+                            className='auth__register-link'>
                             Register
                         </Link>
                     </Form.Item>

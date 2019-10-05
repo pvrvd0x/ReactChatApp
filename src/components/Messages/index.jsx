@@ -1,15 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Empty, Spin } from 'antd';
+import { Empty, Icon } from 'antd';
+import classNames from 'classnames';
 
 import { Message } from '../';
 
-const Messages = ({ isLoading, items }) => {
-    return  <div className="messages">{
-        isLoading && !items ?
-            (<Spin tip='Loading...'/>)
+import './Messages.scss';
+
+const Messages = ({ baseRef, isLoading, items }) => {
+    return  <div 
+                ref={baseRef}
+                className={classNames("messages", {
+        'messages--loading': isLoading
+    })}>{
+        isLoading && !items ?    
+        (<Icon type="loading" spin />)
             : !items || !items.length ? <Empty description="No messages yet"/>
-            : (<div>{items.map(item => <Message {...item}/>)}</div>)
+            : (<div>{items.map(item => <Message key={Math.random()} {...item}/>)}</div>)
     }
     </div>
 };

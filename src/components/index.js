@@ -1,5 +1,6 @@
 export { default as Button }        from './Button';
 export { default as Block }         from './WhiteBlock';
+export { default as AudioMessage}   from './AudioMessage';
 export { default as Message }       from './Message';
 export { default as DialogsItem }   from './DialogItem';
 export { default as IconChecked }   from './IconChecked';

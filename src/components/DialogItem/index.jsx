@@ -9,6 +9,7 @@ import './DialogsItem.scss';
 
 const getDate = time => {
     time = new Date(time);
+
     if (isToday(time)) {
         return format(
             time,
@@ -22,11 +23,21 @@ const getDate = time => {
     }
 };
 
-const DialogsItem = ({ _id, user, createdAt, content, unchecked,  isMe, onSelect }) => (
+const DialogsItem = ({
+    _id,
+    user,
+    createdAt,
+    content,
+    unchecked,
+    currentDialogId, 
+    isMe,
+    onSelect }) => (
     <div className={classNames('dialogs__item', {
-        'dialogs__item--online': user.isOnline
+        // 'dialogs__item--online': user.isOnline,
+        'dialogs__item--selected': currentDialogId === _id
         })}
         onClick={onSelect.bind(this, _id)}>
+            {console.log(user)}
         <div className="dialogs__item-avatar">
             <Avatar user={user} />
         </div>
@@ -34,7 +45,6 @@ const DialogsItem = ({ _id, user, createdAt, content, unchecked,  isMe, onSelect
             <div className="dialogs__item-content-top">
                 <b>{user.fullName}</b>
                 <span className="dialogs__item-content-date">
-                    {/* <DateInfo date={lastMessage.createdAt}/> */}
                     {getDate(createdAt)}
                 </span>
             </div>

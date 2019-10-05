@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import 'antd/dist/antd.css';
 import './button.scss';
 
-const Button = (props) => {
+const Button = props => {
     return (
         <BaseButton {...props} className={classNames(props.className, 'button', {
             'button--large': props.size === 'large',

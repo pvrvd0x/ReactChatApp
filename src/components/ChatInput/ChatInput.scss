@@ -13,16 +13,62 @@
         width: 85%;
     }
 
-    .anticon {
+    .ant-btn {
         opacity: .4;
         font-size: 25px;
-        z-index: 1;
-        cursor: pointer;
-        transition: color .3s ease-in, opacity .3s ease-in;
+        transition: color .3s ease-in, opacity .3s ease-in, transform .3s ease-in;
 
         &:hover {
-            color: $purple;
+            color: $cyan;
             opacity: 1;
+        }
+    }
+
+    &__emoji-picker-wrapper {
+        position: absolute;
+        bottom: 65px;
+        left: 0;
+        height: 440px;
+        overflow: hidden;
+    }
+
+    &__emoji-picker {
+        opacity: 0;
+        transition: transform .15s ease-out, opacity .4s ease-out;
+        transform: translateY(105%);
+        height: 100%;
+
+        &--visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .emoji-mart {
+            position: relative;
+
+            &::after,
+            &::before {
+                position: absolute;
+                content: '';
+                display: block;
+                width: 0;
+                height: 0;
+                left: 7.5%;
+            }
+
+            &::after {
+                border-top: 15px solid #fff;
+                border-right: 15px solid transparent;
+                border-left: 15px solid transparent;
+                top: 99.8%;
+            }
+
+            &::before {
+                top: 100%;
+                border-left: 15px solid transparent;
+                border-right: 15px solid transparent;
+                border-top: 15px solid #c1c1c1;
+            }
         }
     }
 
@@ -30,5 +76,14 @@
         width: 9.5%;
         display: flex;
         justify-content: space-between;
+
+        &-upload-photo {
+            &:hover {
+                .ant-btn {
+                    color: $cyan;
+                    opacity: 1;
+                }
+            }
+        }
     }
 }

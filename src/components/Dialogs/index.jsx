@@ -7,7 +7,7 @@ import './Dialogs.scss';
 
 import { DialogsItem } from '../';
 
-const Dialogs = ({items, myId, onSearch, inputValue, onSelectDialog}) => (
+const Dialogs = ({items, myId, onSearch, inputValue, currentDialogId, onSelectDialog}) => (
     <div className="dialogs-wrapper">
         <div className="chat__sidebar-search">
             <Input.Search
@@ -21,7 +21,8 @@ const Dialogs = ({items, myId, onSearch, inputValue, onSelectDialog}) => (
                 onSelect={onSelectDialog}
                 key={item._id}
                 {...item}
-                isMe={item.user._id === myId}/>))
+                isMe={item.author._id === myId}
+                currentDialogId={currentDialogId}/>))
             : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
         </div>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { generateAvatarFromHash } from '../../utils/helpers';
+import { generateAvatarFromHash } from 'utils/helpers';
 
 import './avatar.scss';
 
@@ -27,8 +27,7 @@ const Avatar = ({ user }) => {
 }
 
 Avatar.propTypes = {
-    avatar: PropTypes.string,
-    fullName: PropTypes.string
+    user: PropTypes.object,
 };
 
 export default Avatar;

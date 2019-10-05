@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import checkedIcon from '../../assets/img/checked.svg';
-import unCheckedIcon from '../../assets/img/unchecked.svg';
+import checkedIcon from 'assets/img/checked.svg';
+import unCheckedIcon from 'assets/img/unchecked.svg';
 
 const IconChecked = ({ isMe, isChecked }) => 
     (isMe ?

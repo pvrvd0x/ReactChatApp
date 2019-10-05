@@ -5,6 +5,8 @@
 
     height: calc(100% - 100px);
     overflow: auto;
+    overflow-x: hidden;
+    padding-right: 15px;
 
     &__search {
         margin-bottom: 20px;

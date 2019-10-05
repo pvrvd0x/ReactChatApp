@@ -15,6 +15,7 @@ const RegisterForm = props => {
         handleChange,
         handleBlur,
         handleSubmit,
+        isSubmitting,
     } = props;
 
     return (
@@ -44,6 +45,9 @@ const RegisterForm = props => {
                     <Form.Item>
                         <Input
                             size='large'
+                            id='fullname'
+                            value={values.fullname}
+                            onChange={handleChange}
                             prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
                             placeholder="Username"/>
                     </Form.Item>
@@ -81,6 +85,7 @@ const RegisterForm = props => {
                     </Form.Item>
                     <Form.Item>
                         <Button
+                                disabled={isSubmitting}
                                 onClick={handleSubmit}
                                 size="large"
                                 type="primary"
@@ -91,7 +96,7 @@ const RegisterForm = props => {
                     </Form.Item>
                     <Form.Item>
                         <Link to='login'
-                              className='auth__register-link'>
+                            className='auth__register-link'>
                             Log in
                         </Link>
                     </Form.Item>

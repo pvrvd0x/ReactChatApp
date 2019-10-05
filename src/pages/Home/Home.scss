@@ -97,19 +97,12 @@
         }
 
         &-messages {
-            padding: 20px;
-            overflow: auto;
             height: calc(100% - 130px);
         }
 
-        .ant-empty,
-        .ant-spin {
+        .ant-empty {
             position: relative;
             top: 25vh;
-        }
-
-        .ant-spin {
-            left: 25vh;
         }
     }
 }

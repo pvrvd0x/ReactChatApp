@@ -4,14 +4,16 @@
     &__item {
         $item: &;
         display: flex;
-        padding: 10px;
-        transition: background-color .2s ease-in;
+        padding: 10px 20px 10px 10px;
+        transition: background-color .2s ease-in, color .2s ease-in;
         cursor: pointer;
         border-radius: 5px;
+        width: 300px;
 
         &.active,
         &:hover {
-            background-color: #f4f7ff;
+            background-color: #6f3671;
+            color: #ffffff;
         }
 
         &--online {
@@ -30,6 +32,15 @@
                     right: 0;
                     bottom: 0;
                 }
+            }
+        }
+
+        &--selected {
+            background-color: $cyan;
+            color: #ffffff;
+
+            &:hover {
+                background-color: $cyan;
             }
         }
 
