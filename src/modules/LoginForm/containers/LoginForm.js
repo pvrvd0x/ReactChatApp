@@ -3,7 +3,7 @@ import { withFormik } from 'formik';
 import store from 'redux/store';
 import validateForm from 'utils/validate';
 import LoginForm from '../components/LoginForm';
-import { userActions } from '../../../redux/actions';
+import { userActions } from 'redux/actions';
 
 
 const LoginFormContainer = withFormik({
@@ -27,6 +27,7 @@ const LoginFormContainer = withFormik({
                 }
                 setSubmitting(false);
             })
+            .catch(() => setSubmitting(false));
     },
     displayName: 'LoginForm',
 })(LoginForm);

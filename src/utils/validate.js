@@ -26,6 +26,12 @@ export default ({ isAuth, values, errors }) => {
             } else if ( errors.password || values.repassword !== values.password ) {
                 errors.repassword = "Passwords doesn't match";
             }
+        },
+
+        fullname: (errors, values) => {
+            if (!isAuth && !values.fullname) {
+                errors.fullname = "Please input your full name";
+            }
         }
     }
 

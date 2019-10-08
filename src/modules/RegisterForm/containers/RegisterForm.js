@@ -23,10 +23,13 @@ export default withFormik({
         store.dispatch(userActions
             .fetchUserRegister(values))
             .then(({ status }) => {
-                if (status === 'sucess') {
-                    props.history.push('/');
+                if (status === 'success') {
+                    props.history.push('/register/verify');
                 }
                 setSubmitting(false);
+            })
+            .catch(() => {
+                setSubmitting(false)
             });
     },
     displayName: 'RegisterForm',
