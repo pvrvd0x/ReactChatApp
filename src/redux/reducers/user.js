@@ -11,7 +11,7 @@ const user = (state = initialState, {type, payload}) => {
         case 'USER:SET_DATA':
             return {
                 ...state,
-                user: payload,
+                data: payload,
                 isAuthed: true,
                 token: window.localStorage.token,
             };

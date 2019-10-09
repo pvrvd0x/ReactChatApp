@@ -26,14 +26,13 @@ const getDate = time => {
 const DialogsItem = ({
     _id,
     user,
-    createdAt,
-    content,
-    unchecked,
     currentDialogId, 
     isMe,
-    onSelect }) => (
+    onSelect,
+    lastMessage,
+    }) => (
     <div className={classNames('dialogs__item', {
-        // 'dialogs__item--online': user.isOnline,
+        'dialogs__item--online': user.isOnline,
         'dialogs__item--selected': currentDialogId === _id
         })}
         onClick={onSelect.bind(this, _id)}>
@@ -44,15 +43,18 @@ const DialogsItem = ({
             <div className="dialogs__item-content-top">
                 <b>{user.fullname}</b>
                 <span className="dialogs__item-content-date">
-                    {getDate(createdAt)}
+                    {getDate(lastMessage.createdAt)}
                 </span>
             </div>
             <div className="dialogs__item-content-bottom">
                 <p>
-                    {content}
+                    {lastMessage.text}
                 </p>
-                {isMe && <IconChecked isMe={isMe} isChecked={unchecked === 0} />}
-                {(unchecked > 0 && !isMe) && <div className='dialogs__item-content-bottom-unchecked-count'>{unchecked}</div>}
+                {isMe && <IconChecked isMe={isMe} isChecked={lastMessage.unchecked === 0} />}
+                {(lastMessage.unchecked > 0 && !isMe) && 
+                    <div className='dialogs__item-content-bottom-unchecked-count'>
+                        {lastMessage.unchecked > 1 ? lastMessage.unchecked : 1}
+                    </div>}
             </div>
         </div>
     </div>

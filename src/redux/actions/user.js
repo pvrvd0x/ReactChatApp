@@ -12,11 +12,19 @@ const actions = {
         payload: bool,
     }),
     fetchUserData: () => dispatch => {
-        userApi.getMe().then(({ data }) => {
-            dispatch(actions.setUserData(data));
-        })
+        userApi
+            .getMe()
+            .then(({ data }) => {
+                dispatch(actions.setUserData(data));
+            })
+            .catch(err => {
+                if (err.response.status === 403) {
+                    dispatch(actions.setIsAuthed(false));
+                    delete window.localStorage.token;
+                }
+            });
     },
-    fetchUserRegister: postData => dispatch => {
+    fetchUserRegister: postData => {
         return userApi
                     .register(postData)
                     .then(({ data }) => {
@@ -34,25 +42,19 @@ const actions = {
         return userApi
                     .login(postData)
                     .then(({ data }) => {
-                        if (data.status === 'success') {
-                            dispatch(actions.setUserData(data));
+                        const { token } = data;
+                        
+                        dispatch(actions.setUserData(data));
 
-                            notification.open({
-                                message: 'Login Successful',
-                                icon: <Icon type="check-circle" style={{ color: '#52c41a' }} />,
-                            })
+                        notification.open({
+                            message: 'Login Successful',
+                            icon: <Icon type="check-circle" style={{ color: '#52c41a' }} />,
+                        })
 
-                            window.axios.defaults.headers.common['token'] = data.token;
-                            window.localStorage['token'] = data.token;
-                            dispatch(actions.fetchUserData());
-                            dispatch(actions.setIsAuthed(true));
-                        } else {
-                            notification.open({
-                                message: 'Login Failed',
-                                description: 'Error in email or password',
-                                icon: <Icon type="close-circle" style={{ color: '#f5222d' }}/>
-                            })
-                        }
+                        window.axios.defaults.headers.common['token'] = token;
+                        window.localStorage['token'] = token;
+                        dispatch(actions.fetchUserData());
+                        dispatch(actions.setIsAuthed(true));
 
                         return data;
                     })

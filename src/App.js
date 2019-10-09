@@ -4,7 +4,6 @@ import { Route, Redirect } from 'react-router-dom';
 
 import { Auth, Home } from './pages';
 
-
 const App = props => {
   const { isAuthed } = props;
 

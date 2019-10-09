@@ -25,11 +25,14 @@ const Dialogs = ({
         {items.length ? orderBy(items, ['createdAt'], ['desc']).map(item => (
             console.log(item.lastMessage.user) ||
             <DialogsItem
-                user={item.lastMessage.user}
+                user={item.author._id !== myId ? item.author : item.partner}
+                isMe={item.author._id === myId}
+                
                 onSelect={onSelectDialog}
                 key={item._id}
                 {...item}
-                isMe={item.author._id === myId}
+
+                lastMessage={item.lastMessage}
                 currentDialogId={currentDialogId}/>))
             : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import { LoginForm, RegisterForm } from "../../modules";
+import { LoginForm, RegisterForm } from "modules";
 import { VerifyEmail } from 'components';
 
 import './Auth.scss';
