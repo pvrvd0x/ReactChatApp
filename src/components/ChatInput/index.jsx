@@ -34,7 +34,7 @@ const ChatInput = () => {
                 placeholder="Input your message"/>
             <div className="chat-input__actions">
                 <UploadField
-                    onFiles={ files => console.log(files)}
+                    // onFiles={ files => console.log(files)}
                     containerProps={{
                         className: 'chat-input__actions-upload-photo'
                     }}

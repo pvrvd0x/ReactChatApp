@@ -9,11 +9,11 @@ const Avatar = ({ user }) => {
         return (
             <img
                 src={user.avatar}
-                alt={`${user.fullName} avatar`}/>
+                alt={`${user.fullname} avatar`}/>
         )
     } else {
         const color = generateAvatarFromHash(user._id),
-            firstCharOfName = user.fullName[0];
+            firstCharOfName = user.fullname[0];
 
         return (
             <div className='avatar avatar--empty'

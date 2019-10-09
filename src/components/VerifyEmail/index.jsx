@@ -44,7 +44,7 @@ const VerifyEmail = ({ location, history }) => {
                     : statusMessage
                 }
                 extra={
-                    status === 'success' &&
+                    status === 'success' && verified &&
                         <Button 
                             onClick={() => {history.push('/login')}}
                             type="primary">

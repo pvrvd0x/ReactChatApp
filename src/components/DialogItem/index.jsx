@@ -37,13 +37,12 @@ const DialogsItem = ({
         'dialogs__item--selected': currentDialogId === _id
         })}
         onClick={onSelect.bind(this, _id)}>
-            {console.log(user)}
         <div className="dialogs__item-avatar">
             <Avatar user={user} />
         </div>
         <div className="dialogs__item-content">
             <div className="dialogs__item-content-top">
-                <b>{user.fullName}</b>
+                <b>{user.fullname}</b>
                 <span className="dialogs__item-content-date">
                     {getDate(createdAt)}
                 </span>
