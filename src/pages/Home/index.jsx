@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Icon } from 'antd';
 import { connect } from 'react-redux';
 
@@ -9,7 +9,16 @@ import './Home.scss';
 
 const Home = ({
     user
-}) => (
+}) => {
+    const [myId, setMyId] = useState('');
+
+    useEffect(() => {
+        if (user.data) {
+            setMyId(user.data._id);
+        }
+    })
+
+    return (
     <section className="home">
         <div className="chat">
             <div className="chat__sidebar">
@@ -24,13 +33,13 @@ const Home = ({
                 </div>
                 <div className="chat__sidebar-dialogs">
                     <Dialogs
-                        myId={'asdasdasdads'}/>
+                        myId={myId}/>
                 </div>
             </div>
             <div className="chat__dialog">
                 <div className="chat__dialog-header">
                     <div className="chat__dialog-header-info">
-                        <b className="chat__dialog-fullname">Yebushi loshadey</b>
+                        <b className="chat__dialog-fullname">Syn Shluhi</b>
                         <Status/>
                     </div>
                     <div className="chat__dialog-options-wrapper">
@@ -38,12 +47,13 @@ const Home = ({
                     </div>
                 </div>
                 <div className="chat__dialog-messages">
-                    <Messages />
+                    <Messages 
+                        myId={myId}/>
                 </div>
                 <ChatInput />
             </div>
         </div>
-    </section>
-);
+    </section>)
+};
 
-export default Home;
+export default connect(state => state)(Home);

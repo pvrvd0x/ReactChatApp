@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { messagesActions } from "redux/actions";
 import { Messages as BaseMessages } from 'components';
 
-const Messages = ({ items, fetchMessages, currentDialogId, isLoading }) => {
+const Messages = ({ items, fetchMessages, currentDialogId, isLoading, myId }) => {
     const messagesRef = useRef(null);
 
     useEffect(() => {
@@ -19,6 +19,7 @@ const Messages = ({ items, fetchMessages, currentDialogId, isLoading }) => {
 
     return (
         <BaseMessages
+            myId={myId}
             baseRef={messagesRef}
             isLoading={isLoading}
             items={items}/>

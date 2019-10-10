@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 
 import { Auth, Home } from './pages';
 
@@ -9,8 +9,17 @@ const App = props => {
 
   return (
     <div className="wrapper">
-        <Route exact path={['/login', '/register', '/register/verify']} component={Auth}/>
-        <Route exact path='/' render={() => isAuthed ? <Home /> : <Redirect to='/login'/>}/>
+      <Switch>
+        <Route
+          exact
+          path={['/login', '/register', '/register/verify']}
+          component={Auth}
+          />
+        <Route
+          path='/'
+          render={() => isAuthed ? <Home /> : <Redirect to='/login'/>}
+          />
+      </Switch>
     </div>
   );
 }

@@ -73,9 +73,8 @@
   &--isme {
     flex-direction: row-reverse;
 
-    .message__audio-duration {
+    #{$self}__audio-duration {
         opacity: 1;
-        color: #000000;
     }
 
     #{$self}__icon-unchecked,
@@ -99,6 +98,10 @@
 
     #{$self}__text {
       color: $black;
+    }
+
+    #{$self}__info {
+      margin-right: 10px;
     }
   }
   

@@ -10,7 +10,7 @@ import './Message.scss';
 const Message = ({
     user,
     text,
-    date,
+    createdAt,
     isMe,
     isChecked,
     attachments,
@@ -52,7 +52,7 @@ const Message = ({
                         ))}
                     </div>}
                 <span className="message__date">
-                    <DateInfo date={date}/>
+                    <DateInfo date={createdAt}/>
                 </span>
             </div>
         </div>
@@ -64,7 +64,7 @@ Message.propTypes = {
     isMe        : PropTypes.bool,
     avatar      : PropTypes.string,
     text        : PropTypes.string,
-    date        : PropTypes.string,
+    createdAt   : PropTypes.string,
     attachments : PropTypes.array,
     classNames  : PropTypes.string,
     isTyping    : PropTypes.bool,

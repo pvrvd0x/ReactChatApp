@@ -7,7 +7,7 @@ import { Message } from '../';
 
 import './Messages.scss';
 
-const Messages = ({ baseRef, isLoading, items }) => {
+const Messages = ({ baseRef, isLoading, items, myId }) => {
     return  <div 
                 ref={baseRef}
                 className={classNames("messages", {
@@ -16,7 +16,12 @@ const Messages = ({ baseRef, isLoading, items }) => {
         isLoading && !items ?    
         (<Icon type="loading" spin />)
             : !items || !items.length ? <Empty description="No messages yet"/>
-            : (<div>{items.map(item => <Message key={Math.random()} {...item}/>)}</div>)
+            : (<div>{items.map(item => 
+                <Message 
+                    key={Math.random()}
+                    {...item}
+                    isMe={item.user._id === myId}
+            />)}</div>)
     }
     </div>
 };

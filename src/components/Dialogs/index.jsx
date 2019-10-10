@@ -23,7 +23,6 @@ const Dialogs = ({
         </div>
         <div className="dialogs">
         {items.length ? orderBy(items, ['createdAt'], ['desc']).map(item => (
-            console.log(item.lastMessage.user) ||
             <DialogsItem
                 user={item.author._id !== myId ? item.author : item.partner}
                 isMe={item.author._id === myId}
