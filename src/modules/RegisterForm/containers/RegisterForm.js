@@ -1,9 +1,12 @@
+
 import { withFormik } from "formik";
 
 import RegisterForm from '../components/RegisterForm';
 import validateForm from 'utils/validate';
 import store from 'redux/store';
 import { userActions } from 'redux/actions';
+import { openNotification } from 'utils/helpers';
+
 
 export default withFormik({
     mapPropsToValues: () => ({
@@ -20,17 +23,24 @@ export default withFormik({
         return errors;
     },
     handleSubmit: (values, { setSubmitting, props }) => {
-        store.dispatch(userActions
-            .fetchUserRegister(values))
-            .then(({ status }) => {
-                if (status === 'success') {
+        store.dispatch(
+            userActions
+            .fetchUserRegister(values)
+        )
+            .then(({ data }) => {
+                if (data.status === 'success') {
                     props.history.push('/register/verify');
                 }
                 setSubmitting(false);
             })
             .catch(() => {
                 setSubmitting(false)
-            });
+                openNotification({
+                    text: 'Such user exists',
+                    type: 'error',
+                    title: 'Error',
+                })
+            })
     },
     displayName: 'RegisterForm',
 })(RegisterForm);

@@ -16,7 +16,7 @@ const Home = ({
         if (user.data) {
             setMyId(user.data._id);
         }
-    })
+    }, [user.data])
 
     return (
     <section className="home">

@@ -1,6 +1,5 @@
 import {userApi} from 'utils/api';
-import { notification, Icon } from 'antd';
-import React from 'react';
+import {openNotification} from 'utils/helpers';
 
 const actions = {
     setUserData: data => ({
@@ -24,19 +23,8 @@ const actions = {
                 }
             });
     },
-    fetchUserRegister: postData => {
-        return userApi
-                    .register(postData)
-                    .then(({ data }) => {
-                        return data;
-                    })
-                    .catch(() => {
-                        notification.open({
-                            message: 'Registration Failed',
-                            description: 'User with this email already exists',
-                            icon: <Icon type="close-circle" style={{ color: '#f5222d' }}/>
-                        })
-                    });
+    fetchUserRegister: postData => dispatch => {
+        return userApi.register(postData)
     },
     fetchUserLogin: postData => dispatch => {
         return userApi
@@ -46,9 +34,9 @@ const actions = {
                         
                         dispatch(actions.setUserData(data));
 
-                        notification.open({
-                            message: 'Login Successful',
-                            icon: <Icon type="check-circle" style={{ color: '#52c41a' }} />,
+                        openNotification({
+                            title: 'success',
+                            type: 'success'
                         })
 
                         window.axios.defaults.headers.common['token'] = token;
@@ -59,10 +47,10 @@ const actions = {
                         return data;
                     })
                     .catch(() => {
-                        notification.open({
-                            message: 'Login Failed',
-                            description: 'Error in email or password',
-                            icon: <Icon type="close-circle" style={{ color: '#f5222d' }}/>
+                        openNotification({
+                            title: 'Login Failed',
+                            text: 'Error in email or password',
+                            type: 'error'
                         })
                     })
     }
