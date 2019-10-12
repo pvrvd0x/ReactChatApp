@@ -11,7 +11,6 @@ const actions = {
     }),
     fetchDialogs: () => dispatch => {
         dialogsApi.getAll().then(({ data }) => {
-            console.dir(data);
             dispatch(actions.setDialogs(data));
         });
     }

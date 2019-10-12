@@ -1,5 +1,5 @@
 const initialState = {
-    items: null,
+    items: [],
     isLoading: false,
 };
 
@@ -11,6 +11,14 @@ const messages = (state = initialState, { type, payload }) => {
                 items: payload,
                 isLoading: false,
             };
+        case 'MESSAGES:ADD_MESSAGE':
+            return {
+                ...state,
+                items: [
+                    ...state.items,
+                    payload
+                ]
+            }
         case 'MESSAGES:SET_IS_LOADING':
             return {
                 ...state,

@@ -3,15 +3,36 @@ import { connect } from 'react-redux';
 
 import { messagesActions } from "redux/actions";
 import { Messages as BaseMessages } from 'components';
+import socket from 'core/socket';
 
-const Messages = ({ items, fetchMessages, currentDialogId, isLoading, myId }) => {
+const Messages = ({
+    items,
+    fetchMessages,
+    currentDialogId,
+    addMessage,
+    isLoading,
+    myId
+}) => {
     const messagesRef = useRef(null);
+
+    const onDialogChange = data => {
+        addMessage(data);
+    }
 
     useEffect(() => {
         if (currentDialogId) {
             fetchMessages(currentDialogId);
         }
-    }, [currentDialogId, fetchMessages]);
+
+        socket.on('MESSAGES:NEW_MESSAGE', onDialogChange);
+    
+        // socket.on('MESSAGES:MESSAGE_DELETED', onDialogChange)
+
+        return () => {
+            socket.removeListener('MESSAGES:NEW_MESSAGE', onDialogChange);
+            // socket.removeListener('MESSAGES:MESSAGE_DELETED', onDialogChange);
+        }
+    }, [currentDialogId]);
 
     useEffect(() => {
         messagesRef.current.scrollTop = messagesRef.current.scrollHeight;

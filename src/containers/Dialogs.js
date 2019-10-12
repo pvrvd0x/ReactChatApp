@@ -17,7 +17,17 @@ const Dialogs = ({
     const onChangeInput = (value = '') => {
         setFiltered(
             items.filter(
-                dialog => dialog.user.fullName.toLowerCase().indexOf(value.toLowerCase()) >= 0
+                dialog => {
+                    let user = {};
+
+                    if (dialog.author._id === myId) {
+                        user = dialog.partner;
+                    } else {
+                        user = dialog.author;
+                    }
+                    
+                    return user.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0
+                }
             )
         );
 
@@ -33,6 +43,10 @@ const Dialogs = ({
     }, [items, fetchDialogs]);
 
     socket.on('SERVER:DIALOG_CREATED', () => {
+        fetchDialogs();
+    })
+
+    socket.on('MESSAGES:NEW_MESSAGE', () => {
         fetchDialogs();
     })
 
