@@ -1,0 +1,4 @@
+[submodule "ReactChatServer"]
+	path = ReactChatServer
+	url = https://github.com/pvrvd0x/ReactChatServer
+	branch = master
