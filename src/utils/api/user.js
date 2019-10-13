@@ -5,6 +5,7 @@ const userApi = {
     getMe: () => axios.get('/user/me'),
     verifyHash: hash => axios.get(`/user/verify?hash=${hash}`),
     register: postData => axios.post('/user/register', postData),
+    findUsers: query => axios.get(`/user/find?query=${query}`)
 };
 
 export default userApi;

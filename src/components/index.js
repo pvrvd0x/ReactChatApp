@@ -11,3 +11,4 @@ export { default as Avatar }        from './Avatar';
 export { default as ChatInput }     from './ChatInput';
 export { default as Status }        from './Status';
 export { default as VerifyEmail }   from './VerifyEmail';
+export { default as Sidebar }       from './Sidebar';

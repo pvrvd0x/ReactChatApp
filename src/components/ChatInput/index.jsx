@@ -6,12 +6,22 @@ import classNames from 'classnames';
 
 import './ChatInput.scss';
 
-const ChatInput = () => {
+const ChatInput = ({
+    currentDialogId,
+    onMessageSend
+}) => {
     const [value, setValue] = useState(''),
         [emojiTabIsActive, setEmojiTab] = useState(false);
 
     const toggleEmojiTab = () => {
         setEmojiTab(!emojiTabIsActive);
+    }
+
+    const handleSendMessage = e => {
+        if (e.keyCode === 13) {
+            onMessageSend(value, currentDialogId);
+            setValue('');
+        }
     }
 
     return (
@@ -30,8 +40,10 @@ const ChatInput = () => {
                 className="chat-input__smile-btn"
                 icon="smile"/>
             <Input
-                onChange={e => setValue(e.target.value)}
-                placeholder="Input your message"/>
+                onChange={ e => setValue(e.target.value) }
+                onKeyUp={ handleSendMessage }
+                placeholder="Input your message"
+                value={ value }/>
             <div className="chat-input__actions">
                 <UploadField
                     // onFiles={ files => console.log(files)}

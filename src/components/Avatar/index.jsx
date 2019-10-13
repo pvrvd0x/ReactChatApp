@@ -4,10 +4,11 @@ import { generateAvatarFromHash } from 'utils/helpers';
 
 import './avatar.scss';
 
-const Avatar = ({ user }) => {
+const Avatar = ({ user, style }) => {
     if (user.avatar) {
         return (
-            <img
+            <img 
+                style={style}
                 src={user.avatar}
                 alt={`${user.fullname} avatar`}/>
         )
@@ -18,6 +19,7 @@ const Avatar = ({ user }) => {
         return (
             <div className='avatar avatar--empty'
                 style={{
+                    ...style,
                     background: `linear-gradient(135deg, ${color.color}, ${color.colorLighten} 96%)`
                 }}>
                 { firstCharOfName }

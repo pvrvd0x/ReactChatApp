@@ -4,12 +4,16 @@ import PropTypes from 'prop-types';
 
 import './Status.scss';
 
-const Status = ({ online }) => (
-    <span className={classNames('status', {
-        'status--online': online
-    })}>
-        {online ? 'online': 'offline'}
-    </span>
+const Status = ({ online, fullname }) => (
+
+    <div className="chat__dialog-header-info">
+        <b className="chat__dialog-fullname">{fullname}</b>
+        <span className={classNames('status', {
+            'status--online': online
+        })}>
+            {online ? 'online': 'offline'}
+        </span>
+    </div>
 );
 
 Status.propTypes = {

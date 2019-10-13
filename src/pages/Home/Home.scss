@@ -33,6 +33,21 @@
         &-dialogs {
             height: 100%;
         }
+
+        .ant-select-dropdown-menu-item .avatar{
+            width: 30px;
+            height: 30px;
+            font-size: 14px;
+        }
+
+        .anticon {
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                opacity: .5;
+            }
+        }
     }
 
     &__dialog {
