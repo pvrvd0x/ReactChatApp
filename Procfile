@@ -1,0 +1,1 @@
+web: ts-node ReactChatServer/index.ts
