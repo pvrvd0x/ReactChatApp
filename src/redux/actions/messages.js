@@ -16,6 +16,19 @@ const messagesActions = {
             })
         }
     },
+    removeMessageById: messageId => dispatch => {
+        messagesApi
+            .removeById(messageId)
+            .then(() => {
+                dispatch({
+                    type: 'MESSAGES:REMOVE_MESSAGE',
+                    payload: messageId
+                })
+            })
+            .catch(() => {
+                dispatch(messagesActions.setIsLoading(false));
+            })
+    },
     setIsLoading: bool => ({
         type: 'MESSAGES:SET_IS_LOADING',
         payload: bool,

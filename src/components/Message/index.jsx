@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Button, Popover } from 'antd';
+import reactStringReplace from 'react-string-replace';
+import { Emoji } from 'emoji-mart';
 
 import { DateInfo, IconChecked, Avatar } from '../';
 import { AudioMessage } from '../';
@@ -15,7 +18,9 @@ const Message = ({
     isChecked,
     attachments,
     audio,
-    isTyping }) => {
+    isTyping,
+    onRemoveMessage
+}) => {
     return (
     <div className={classNames('message', {
         'message--isme'     : isMe,
@@ -24,13 +29,29 @@ const Message = ({
         'message--image'    : attachments && attachments.length === 1})}>
         <div className="message__content">
             <IconChecked isMe={isMe} isChecked={isChecked}/>
+            { isMe &&
+            <Popover
+                content={
+                    <div className="message__actions">
+                        <Button onClick={onRemoveMessage}>Delete</Button>
+                    </div>
+                }
+                title='Title'
+                trigger='click'>
+                    <div className="message__icon-actions">
+                        <Button type='link' shape='circle' icon='ellipsis'/>
+                    </div>
+            </Popover>}
             <div className="message__avatar">
                 <Avatar user={user}/>
             </div>
             <div className="message__info">
                 { (audio || (!attachments || (attachments && (attachments.length !== 1)))) &&
                 <div className="message__bubble">
-                    { text && <p className='message__text'>{text}</p> }
+                    { text && <p className='message__text'>{
+                        reactStringReplace(text, /:(.+?):/g, (match) => (
+                            <Emoji emoji={match} set='google' size={22} />
+                    ))}</p> }
                     { isTyping && <div className="message__typing">
                         <span className="dot one"/>
                         <span className="dot two"/>

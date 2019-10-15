@@ -146,26 +146,41 @@
     max-width: 440px;
     right: 0;
 
+    &:hover {
+      #{$self}__icon-actions {
+        display: block;
+      }
+    }
+
     @media (max-width: 768px) {
       max-width: 85%;
     }
   }
 
-  &__icon-unchecked,
-  &__icon-checked {
-    position: absolute;
-    bottom: 20px;
-    right: -25px;
-  }
+  &__icon {
+    &-unchecked,
+    &-checked {
+      position: absolute;
+      bottom: 20px;
+      right: -25px;
+    }
 
-  &__icon-unchecked {
-    width: 16px;
-    height: 16px;
-  }
+    &-unchecked {
+      width: 16px;
+      height: 16px;
+    }
 
-  &__icon-checked {
-    width: 23px;
-    height: 23px;
+    &-checked {
+      width: 23px;
+      height: 23px;
+    }
+
+    &-actions {
+      display: none;
+      position: absolute;
+      left: -35px;
+      transform: rotate(90deg);
+    }
   }
 
   &__attachments {
@@ -182,6 +197,10 @@
         border-radius: 8px;
       }
     }
+  }
+
+  &__actions button {
+    width: 100%
   }
 
   &__avatar {
@@ -209,6 +228,8 @@
   &__text {
     color: #fff;
     line-height: 20px;
+    display: flex;
+    align-items: center;
   }
 
   &__date {
@@ -216,5 +237,9 @@
     margin-top: 5px;
     font-size: 12px;
     opacity: .4;
+  }
+
+  .emoji-mart-emoji {
+    height: 22px;
   }
 }

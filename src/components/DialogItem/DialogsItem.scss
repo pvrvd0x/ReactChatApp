@@ -89,11 +89,14 @@
                 position: relative;
 
                 p {
+                    display: flex;
+                    align-items: center;
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     overflow: hidden;
                     width: 210px;
-                    opacity: .4;
+                    color: lightgray;
+                    padding: 5px 0;
                 }
 
                 &-unchecked-count {
@@ -111,6 +114,10 @@
                     bottom: auto;
                 }
             }
+        }
+
+        .emoji-mart-emoji {
+            height: 22px;
         }
     }
 }

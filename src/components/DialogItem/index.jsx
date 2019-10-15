@@ -1,6 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 import { format, isToday } from 'date-fns';
+import reactStringReplace from 'react-string-replace';
+import { Emoji } from 'emoji-mart';
 
 import { Avatar } from '../';
 
@@ -48,7 +50,9 @@ const DialogsItem = ({
             </div>
             <div className="dialogs__item-content-bottom">
                 <p>
-                    {lastMessage.text}
+                    {reactStringReplace(lastMessage.text, /:(.+?):/g, (match) => (
+                        <Emoji emoji={match} set='google' size={22} />
+                    ))}
                 </p>
                 {isMe && <IconChecked isMe={isMe} isChecked={lastMessage.unchecked === 0} />}
                 {(lastMessage.unchecked > 0 && !isMe) && 

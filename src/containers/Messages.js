@@ -9,6 +9,7 @@ const Messages = ({
     items,
     fetchMessages,
     currentDialogId,
+    removeMessageById,
     addMessage,
     isLoading,
     myId
@@ -25,12 +26,9 @@ const Messages = ({
         }
 
         socket.on('MESSAGES:NEW_MESSAGE', onDialogChange);
-    
-        // socket.on('MESSAGES:MESSAGE_DELETED', onDialogChange)
 
         return () => {
             socket.removeListener('MESSAGES:NEW_MESSAGE', onDialogChange);
-            // socket.removeListener('MESSAGES:MESSAGE_DELETED', onDialogChange);
         }
     }, [currentDialogId]);
 
@@ -40,6 +38,7 @@ const Messages = ({
 
     return (
         <BaseMessages
+            onRemoveMessage={removeMessageById}
             myId={myId}
             baseRef={messagesRef}
             isLoading={isLoading}

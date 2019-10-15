@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Input, Button } from 'antd';
 import { UploadField } from '@navjobs/upload';
-import { Picker } from 'emoji-mart';
+import { Picker, Emoji } from 'emoji-mart';
 import classNames from 'classnames';
 
 import './ChatInput.scss';
@@ -18,10 +18,14 @@ const ChatInput = ({
     }
 
     const handleSendMessage = e => {
-        if (e.keyCode === 13) {
+        if (e.keyCode === 13 || e.type === 'click') {
             onMessageSend(value, currentDialogId);
             setValue('');
         }
+    }
+
+    const handleEmojiSelect = ({ colons }) => {
+        setValue((value + " " + colons).trim());
     }
 
     return (
@@ -30,7 +34,7 @@ const ChatInput = ({
                 <div className={classNames("chat-input__emoji-picker", {
                     'chat-input__emoji-picker--visible': emojiTabIsActive,
                 })}>
-                    <Picker set='emojione'/>
+                    <Picker set='google' onSelect={(emoji) => handleEmojiSelect(emoji)}/>
                 </div>
             </div>
             <Button
@@ -60,7 +64,7 @@ const ChatInput = ({
                             icon='camera'/>
                     </UploadField>
                 {value ? 
-                <Button type='link' shape='circle' icon="check-circle"/>
+                <Button type='link' shape='circle' icon="check-circle" onClick={handleSendMessage}/>
                 : <Button type='link' shape='circle' icon="audio"/>}
             </div>
         </div>);

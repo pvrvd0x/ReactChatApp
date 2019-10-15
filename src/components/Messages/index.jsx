@@ -7,7 +7,13 @@ import { Message } from '../';
 
 import './Messages.scss';
 
-const Messages = ({ baseRef, isLoading, items, myId }) => {
+const Messages = ({
+    onRemoveMessage,
+    baseRef,
+    isLoading,
+    items,
+    myId 
+}) => {
     return  <div 
                 ref={baseRef}
                 className={classNames("messages", {
@@ -17,7 +23,8 @@ const Messages = ({ baseRef, isLoading, items, myId }) => {
         (<Icon type="loading" spin />)
             : !items || !items.length ? <Empty description="No messages yet"/>
             : (<div>{items.map(item => 
-                <Message 
+                <Message
+                    onRemoveMessage={onRemoveMessage.bind(this, item._id)}
                     key={Math.random()}
                     {...item}
                     isMe={item.user._id === myId}
