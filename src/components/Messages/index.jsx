@@ -21,8 +21,9 @@ const Messages = ({
     })}>{
         isLoading && !items ?    
         (<Icon type="loading" spin />)
-            : !items || !items.length ? <Empty description="No messages yet"/>
-            : (<div>{items.map(item => 
+            : !items || !items.length ? <Empty description="Select dialog to start messaging or start new dialog by pressing button right to Dialogs List"/>
+            : (<div className='messages-wrapper'>
+                {items.map(item => 
                 <Message
                     onRemoveMessage={onRemoveMessage.bind(this, item._id)}
                     key={Math.random()}

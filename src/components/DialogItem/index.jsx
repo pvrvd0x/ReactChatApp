@@ -8,6 +8,7 @@ import { Avatar } from '../';
 
 import { IconChecked } from '../';
 import './DialogsItem.scss';
+// import dickSVG from 'assets/img/dick.svg';
 
 const getDate = time => {
     time = new Date(time);
@@ -31,7 +32,7 @@ const DialogsItem = ({
     currentDialogId, 
     isMe,
     onSelect,
-    lastMessage,
+    lastMessage
     }) => (
     <div className={classNames('dialogs__item', {
         'dialogs__item--online': user.isOnline,
@@ -51,7 +52,8 @@ const DialogsItem = ({
             <div className="dialogs__item-content-bottom">
                 <p>
                     {reactStringReplace(lastMessage.text, /:(.+?):/g, (match) => (
-                        <Emoji emoji={match} set='google' size={22} />
+                        // match === 'dick' ? <img src={dickSVG} style={{ width:  22, height: 22}} /> : 
+                        <Emoji emoji={match} set='google' size={16} />
                     ))}
                 </p>
                 {isMe && <IconChecked isMe={isMe} isChecked={lastMessage.unchecked === 0} />}

@@ -13,7 +13,8 @@ const Dialogs = ({
     onSearch,
     inputValue,
     currentDialogId,
-    onSelectDialog}) => (
+    onSelectDialog
+}) => (
     <div className="dialogs-wrapper">
         <div className="chat__sidebar-search">
             <Input.Search
@@ -23,7 +24,6 @@ const Dialogs = ({
         </div>
         <div className="dialogs">
         {items.length ? orderBy(items, ['createdAt'], ['desc']).map(item => (
-            console.log(item.author._id, myId) ||
             <DialogsItem
                 user={item.author._id !== myId ? item.author : item.partner}
                 isMe={item.lastMessage.user._id === myId}

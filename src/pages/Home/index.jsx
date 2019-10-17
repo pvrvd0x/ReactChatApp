@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { Status, Sidebar } from 'containers';
-import { Messages, ChatInput } from 'containers';
+import { Status, Sidebar, Messages, ChatInput } from 'containers';
+import { Avatar } from 'components';
 
 import './Home.scss';
 
 const Home = ({
-    user,
-    dialog
+    user
 }) => {
-    const [myId, setMyId] = useState('');
+    const [myInfo, setMyInfo] = useState('');
 
     useEffect(() => {
         if (user.data) {
-            setMyId(user.data._id);
+            setMyInfo(user.data);
         }
     }, [user.data])
 
@@ -25,15 +24,13 @@ const Home = ({
             <div className="chat__dialog">
                 <div className="chat__dialog-header">
                     <Status/>
-                    <div className="chat__dialog-options-wrapper">
-                        <button className="chat__dialog-options">
-
-                        </button>
-                    </div>
+                    {myInfo && <div className="chat__account">
+                        <Avatar user={myInfo}/>
+                    </div>}
                 </div>
                 <div className="chat__dialog-messages">
                     <Messages 
-                        myId={myId}/>
+                        myId={myInfo._id || ''}/>
                 </div>
                 <ChatInput />
             </div>
@@ -42,5 +39,5 @@ const Home = ({
 };
 
 export default connect(
-    ({ user, dialog }) => ({user, dialog})
+    ({ user }) => ({user})
     )(Home);

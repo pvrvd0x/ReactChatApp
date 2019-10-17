@@ -35,9 +35,6 @@ const messagesActions = {
     }),
     fetchMessageSend: (text, dialogId) => dispatch => {
         messagesApi.send(text, dialogId)
-                .then(data => {
-                    console.log(data);
-                })
     },
     fetchMessages: dialogId => dispatch => {
         dispatch(messagesActions.setIsLoading(true));

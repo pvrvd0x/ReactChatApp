@@ -7,7 +7,12 @@ const Status = ({ currentDialogId, user, dialogs }) => {
     const currentDialog = dialogs.filter(dialog => dialog._id === currentDialogId)[0];
 
     if (!dialogs.length || !currentDialogId) {
-        return null;
+        return ( user &&
+            <StatusBase
+                fullname={user.fullname}
+                isMe
+                />
+        );
     }
 
     let partner = {};

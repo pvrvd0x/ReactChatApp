@@ -86,9 +86,10 @@
       flex-direction: row-reverse;
     }
 
+    #{$self}__avatar,
+    #{$self}__avatar .avatar,
     #{$self}__avatar img {
       margin-right: 0;
-      margin-left: 13px;
     }
 
     #{$self}__bubble {
@@ -228,8 +229,6 @@
   &__text {
     color: #fff;
     line-height: 20px;
-    display: flex;
-    align-items: center;
   }
 
   &__date {
