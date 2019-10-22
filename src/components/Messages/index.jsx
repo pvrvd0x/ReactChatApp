@@ -12,24 +12,27 @@ const Messages = ({
     baseRef,
     isLoading,
     items,
-    myId 
+    myId,
+    user
 }) => {
-    return  <div 
-                ref={baseRef}
-                className={classNames("messages", {
-        'messages--loading': isLoading
-    })}>{
-        isLoading && !items ?    
-        (<Icon type="loading" spin />)
+
+    return  <div
+        ref={baseRef}
+        className={classNames("messages", {
+            'messages--loading': isLoading
+        })}>
+        {
+            isLoading || !user ?
+            (<Icon type="loading" spin />)
             : !items || !items.length ? <Empty description="Select dialog to start messaging or start new dialog by pressing button right to Dialogs List"/>
             : (<div className='messages-wrapper'>
-                {items.map(item => 
-                <Message
-                    onRemoveMessage={onRemoveMessage.bind(this, item._id)}
-                    key={Math.random()}
-                    {...item}
-                    isMe={item.user._id === myId}
-            />)}</div>)
+                {items.map(item =>
+                    <Message
+                        onRemoveMessage={onRemoveMessage.bind(this, item._id)}
+                        key={Math.random()}
+                        {...item}
+                        isMe={item.user._id === myId}/>
+                )}</div>)
     }
     </div>
 };

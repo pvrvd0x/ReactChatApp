@@ -72,6 +72,7 @@
 
   &--isme {
     flex-direction: row-reverse;
+    transform-origin: bottom right;
 
     #{$self}__audio-duration {
         opacity: 1;
@@ -186,13 +187,15 @@
 
   &__attachments {
     display: flex;
-    margin: 10px 0;
+    flex-wrap: wrap;
+    margin-top: 5px;
 
     &-item {
       display: flex;
       margin-right: 5px;
 
       img {
+        cursor: pointer;
         width: 45px;
         height: 45px;
         border-radius: 8px;
@@ -207,6 +210,7 @@
   &__avatar {
     display: flex;
     flex-direction: column-reverse;
+    max-height: 67px;
 
     & > .avatar--empty,
     img {

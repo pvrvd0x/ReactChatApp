@@ -12,13 +12,14 @@ const Messages = ({
     removeMessageById,
     addMessage,
     isLoading,
-    myId
+    myId,
+    user
 }) => {
     const messagesRef = useRef(null);
 
     const onDialogChange = data => {
         addMessage(data);
-    }
+    };
 
     useEffect(() => {
         if (currentDialogId) {
@@ -38,6 +39,7 @@ const Messages = ({
 
     return (
         <BaseMessages
+            user={user}
             onRemoveMessage={removeMessageById}
             myId={myId}
             baseRef={messagesRef}
@@ -47,10 +49,11 @@ const Messages = ({
 };
 
 export default connect(
-    ({ dialogs, messages }) => ({
+    ({ dialogs, user, messages }) => ({
         currentDialogId: dialogs.currentDialogId,
         items: messages.items,
-        isLoading: messages.isLoading
+        isLoading: messages.isLoading,
+        user: user.data,
     }),
     messagesActions
 )(Messages);

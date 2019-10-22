@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 
 import { Status, Sidebar, Messages, ChatInput } from 'containers';
 import { Avatar } from 'components';
@@ -15,7 +16,7 @@ const Home = ({
         if (user.data) {
             setMyInfo(user.data);
         }
-    }, [user.data])
+    }, [user.data]);
 
     return (
     <section className="home">
@@ -24,12 +25,14 @@ const Home = ({
             <div className="chat__dialog">
                 <div className="chat__dialog-header">
                     <Status/>
-                    {myInfo && <div className="chat__account">
+                    {myInfo && !myInfo.token && <div className="chat__account">
                         <Avatar user={myInfo}/>
                     </div>}
                 </div>
-                <div className="chat__dialog-messages">
-                    <Messages 
+                <div className="chat__dialog-messages" style={{
+                    height: `calc(100% - 246px)`,
+                }}>
+                    <Messages
                         myId={myInfo._id || ''}/>
                 </div>
                 <ChatInput />
@@ -39,5 +42,5 @@ const Home = ({
 };
 
 export default connect(
-    ({ user }) => ({user})
-    )(Home);
+    ({user}) => ({user})
+)(withRouter(Home));

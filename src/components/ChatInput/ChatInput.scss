@@ -1,26 +1,41 @@
 @import '~styles/variables';
 
 .chat-input {
-    position: relative;
-    padding: 10px 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
+    & > div {
+        position: relative;
+        padding: 10px 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fff;
 
-    .ant-input {
-        margin: 0 20px;
-        width: 85%;
     }
 
-    .ant-btn {
-        opacity: .4;
-        font-size: 25px;
-        transition: color .3s ease-in, opacity .3s ease-in, transform .3s ease-in;
+    .ant {
+        &-input {
+            margin: 0 20px;
+            width: 85%;
+        }
 
-        &:hover {
-            color: $cyan;
-            opacity: 1;
+        &-btn {
+            opacity: .4;
+            font-size: 25px;
+            transition: color .3s ease-in, opacity .3s ease-in, transform .3s ease-in;
+
+            &:hover {
+                color: $cyan;
+                opacity: 1;
+            }
+        }
+
+        &-upload-list-item {
+            &-thumbnail {
+                object-fit: cover;
+            }
+
+            &-info span {
+                height: 100%;
+            }
         }
     }
 
@@ -43,7 +58,7 @@
         display: none;
         position: absolute;
         bottom: 430px;
-        left: 0px;
+        left: 0;
 
         &--visible {
             display: block;
@@ -76,6 +91,15 @@
                 border-top: 15px solid #c1c1c1;
             }
         }
+    }
+
+    &-attachments {
+        padding: 10px 5px;
+        background-color: #fff;
+        border-radius: 3px;
+        transition: transform .3s;
+        transform: scale(1);
+        transform-origin: bottom left;
     }
 
     &__actions {

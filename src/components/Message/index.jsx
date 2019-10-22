@@ -9,14 +9,14 @@ import { DateInfo, IconChecked, Avatar } from '../';
 import { AudioMessage } from '../';
 
 import './Message.scss';
-import dickSVG from 'assets/img/dick.svg';
+// import dickSVG from 'assets/img/dick.svg';
 
 const Message = ({
     user,
     text,
     createdAt,
     isMe,
-    isChecked,
+    unchecked,
     attachments,
     audio,
     isTyping,
@@ -29,7 +29,7 @@ const Message = ({
         'message--is-audio' : audio,
         'message--image'    : attachments && attachments.length === 1})}>
         <div className="message__content">
-            <IconChecked isMe={isMe} isChecked={isChecked}/>
+            <IconChecked isMe={isMe} unchecked={unchecked}/>
             { isMe &&
             <Popover
                 content={
@@ -37,7 +37,6 @@ const Message = ({
                         <Button onClick={onRemoveMessage}>Delete</Button>
                     </div>
                 }
-                title='Title'
                 trigger='click'>
                     <div className="message__icon-actions">
                         <Button type='link' shape='circle' icon='ellipsis'/>
@@ -47,9 +46,8 @@ const Message = ({
                 <Avatar user={user}/>
             </div>
             <div className="message__info">
-                { (audio || (!attachments || (attachments && (attachments.length !== 1)))) &&
                 <div className="message__bubble">
-                    { text && <p className='message__text'>{
+                    { (text && !audio) && <p className='message__text'>{
                         reactStringReplace(text, /:(.+?):/g, (match) => (
                             // match === 'dick' ? <img key={Math.random()} src={dickSVG}/> : 
                             <Emoji emoji={match} set='google' size={22} key={Math.random()} />
@@ -63,8 +61,7 @@ const Message = ({
                                     audio={audio}
                                     isMe={isMe}/>}
                 </div>
-                }
-                    {attachments && 
+                    {(attachments && !!attachments.length) &&
                     <div className="message__attachments">
                         {attachments.map(item => (
                             <div 

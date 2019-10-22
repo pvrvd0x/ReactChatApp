@@ -10,7 +10,7 @@
     background-color: #fff;
     width: 1140px;
     margin: 0 auto;
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.04204);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.04204);
 
     &__sidebar {
         width: 356px;
@@ -27,7 +27,7 @@
         }
 
         &-search {
-            margin: 10px 0;
+            margin: 18px 0;
         }
 
         &-dialogs {
@@ -80,7 +80,7 @@
         &-messages {
             height: calc(100% - 130px);
             border-radius: 5px;
-            background-color: #eee;
+            background-color: #f7f7f7;
             overflow: hidden
         }
 
@@ -96,5 +96,6 @@
         position: absolute;
         right: 15px;
         top: 8px;
+        cursor: pointer;
     }
 }
