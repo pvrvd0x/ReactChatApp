@@ -33,8 +33,8 @@ const messagesActions = {
         type: 'MESSAGES:SET_IS_LOADING',
         payload: bool,
     }),
-    fetchMessageSend: (text, dialogId) => dispatch => {
-        messagesApi.send(text, dialogId)
+    fetchMessageSend: (text, dialogId, attachments) => dispatch => {
+        messagesApi.send(text, dialogId, attachments)
     },
     fetchMessages: dialogId => dispatch => {
         dispatch(messagesActions.setIsLoading(true));

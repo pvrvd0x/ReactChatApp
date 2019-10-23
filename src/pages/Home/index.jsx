@@ -8,7 +8,8 @@ import { Avatar } from 'components';
 import './Home.scss';
 
 const Home = ({
-    user
+    user,
+    attachments,
 }) => {
     const [myInfo, setMyInfo] = useState('');
 
@@ -30,7 +31,7 @@ const Home = ({
                     </div>}
                 </div>
                 <div className="chat__dialog-messages" style={{
-                    height: `calc(100% - 246px)`,
+                    height: `calc(100% - ${attachments.items.length >= 1 ? 263: 138}px)`
                 }}>
                     <Messages
                         myId={myInfo._id || ''}/>
@@ -42,5 +43,5 @@ const Home = ({
 };
 
 export default connect(
-    ({user}) => ({user})
+    ({user, attachments}) => ({user, attachments})
 )(withRouter(Home));

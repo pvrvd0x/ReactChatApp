@@ -27,11 +27,9 @@ const Dialogs = ({
             <DialogsItem
                 user={item.author._id !== myId ? item.author : item.partner}
                 isMe={item.lastMessage.user._id === myId}
-                
                 onSelect={onSelectDialog}
                 key={item._id}
                 {...item}
-
                 lastMessage={item.lastMessage}
                 currentDialogId={currentDialogId}/>))
             : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}

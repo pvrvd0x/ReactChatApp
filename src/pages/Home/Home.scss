@@ -78,10 +78,10 @@
         }
 
         &-messages {
-            height: calc(100% - 130px);
             border-radius: 5px;
             background-color: #f7f7f7;
-            overflow: hidden
+            overflow: hidden;
+            transition: height .3s;
         }
 
         .ant-empty {

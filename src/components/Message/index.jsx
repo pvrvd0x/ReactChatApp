@@ -27,7 +27,7 @@ const Message = ({
         'message--isme'     : isMe,
         'message--is-typing': isTyping,
         'message--is-audio' : audio,
-        'message--image'    : attachments && attachments.length === 1})}>
+        'message--image'    : attachments && attachments.length === 1 && !text})}>
         <div className="message__content">
             <IconChecked isMe={isMe} unchecked={unchecked}/>
             { isMe &&
@@ -46,21 +46,22 @@ const Message = ({
                 <Avatar user={user}/>
             </div>
             <div className="message__info">
+                {(!attachments.length || attachments.length > 1 || (attachments.length === 1 && text)) &&
                 <div className="message__bubble">
-                    { (text && !audio) && <p className='message__text'>{
+                    {(text && !audio) && <p className='message__text'>{
                         reactStringReplace(text, /:(.+?):/g, (match) => (
                             // match === 'dick' ? <img key={Math.random()} src={dickSVG}/> : 
-                            <Emoji emoji={match} set='google' size={22} key={Math.random()} />
-                    ))}</p> }
-                    { isTyping && <div className="message__typing">
+                            <Emoji emoji={match} set='google' size={22} key={Math.random()}/>
+                        ))}</p>}
+                    {isTyping && <div className="message__typing">
                         <span className="dot one"/>
                         <span className="dot two"/>
                         <span className="dot three"/>
-                    </div> }
-                    { audio && <AudioMessage 
-                                    audio={audio}
-                                    isMe={isMe}/>}
-                </div>
+                    </div>}
+                    {audio && <AudioMessage
+                        audio={audio}
+                        isMe={isMe}/>}
+                </div>}
                     {(attachments && !!attachments.length) &&
                     <div className="message__attachments">
                         {attachments.map(item => (

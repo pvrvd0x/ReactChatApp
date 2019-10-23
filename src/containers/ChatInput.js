@@ -8,7 +8,7 @@ import { uploadApi } from "utils/api";
 const ChatInput = ({ 
     fetchMessageSend,
     setAttachments,
-
+    removeAttachment,
     dialogs: { currentDialogId },
     attachments,
 }) => {
@@ -21,7 +21,13 @@ const ChatInput = ({
 
     const handleSendMessage = (e) => {
         if (e.keyCode === 13 || e.type === 'click') {
-            fetchMessageSend(value, currentDialogId);
+            if (attachments && attachments.length) {
+                fetchMessageSend(value, currentDialogId, attachments.map(item => item.uid));
+                setAttachments([]);
+            }
+            else
+                fetchMessageSend(value, currentDialogId);
+
             setValue('');
         }
     };
@@ -38,7 +44,6 @@ const ChatInput = ({
 
     const handleFileUpload = async files => {
         let uploaded = attachments;
-        console.log(uploaded);
         for (const file of files) {
             const uid = Math.round(Math.random() * 1000);
 
@@ -66,6 +71,11 @@ const ChatInput = ({
                         }
                         return item;
                     })
+                })
+                .catch(() => {
+                    return {
+                        status: 'error'
+                    }
                 })
         }
         setAttachments(uploaded);
@@ -95,6 +105,7 @@ const ChatInput = ({
             handleSendMessage={handleSendMessage}
             handleFileUpload={handleFileUpload}
             attachments={attachments}
+            removeAttachment={removeAttachment}
         />
     )
 };

@@ -1,5 +1,5 @@
 const initialState = {
-    items: [],
+    items: []
 };
 
 const attachments = (state = initialState, { type, payload }) => {
@@ -12,7 +12,7 @@ const attachments = (state = initialState, { type, payload }) => {
         case 'ATTACHMENTS:REMOVE_FILE':
             return {
                 ...state,
-                items: state.items.filter(file => file._id !== payload)
+                items: state.items.filter(file => file.uid !== payload.uid),
             };
         default:
             return state;

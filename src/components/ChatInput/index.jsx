@@ -19,6 +19,7 @@ const ChatInput = ({
     handleSendMessage,
     handleFileUpload,
     attachments,
+    removeAttachment
 }) => {
     return (
             <div className="chat-input">
@@ -63,7 +64,7 @@ const ChatInput = ({
                     </div>
                 </div>
                 <div className='chat-input-attachments'>
-                    <FilesUploader attachments={attachments}/>
+                    <FilesUploader attachments={attachments} removeAttachment={removeAttachment}/>
                 </div>
             </div>);
 };

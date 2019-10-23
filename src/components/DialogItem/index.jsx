@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { format, isToday } from 'date-fns';
+import { Icon } from 'antd';
 import reactStringReplace from 'react-string-replace';
 import { Emoji } from 'emoji-mart';
 
@@ -53,10 +54,10 @@ const DialogsItem = ({
                     </div>
                     <div className="dialogs__item-content-bottom">
                         <p>
-                            {reactStringReplace(lastMessage.text, /:(.+?):/g, (match) => (
+                            {lastMessage.text ? reactStringReplace(lastMessage.text, /:(.+?):/g, (match) => (
                                 // match === 'dick' ? <img src={dickSVG} style={{ width:  22, height: 22}} /> :
                                 <Emoji emoji={match} set='google' size={16} />
-                            ))}
+                            )) : (<span><Icon type='file-image'/> Image</span>)}
                         </p>
                         {isMe && <IconChecked isMe={isMe} unchecked={lastMessage.unchecked} />}
                         {(lastMessage.unchecked > 0 && !isMe) &&
