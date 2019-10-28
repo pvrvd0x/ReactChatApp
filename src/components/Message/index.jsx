@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Button, Popover } from 'antd';
+import {Button, Popover, Input, Icon} from 'antd';
 import reactStringReplace from 'react-string-replace';
 import { Emoji } from 'emoji-mart';
 
@@ -10,6 +10,8 @@ import { AudioMessage } from '../';
 
 import './Message.scss';
 // import dickSVG from 'assets/img/dick.svg';
+
+const { TextArea } = Input;
 
 const Message = ({
     user,
@@ -20,7 +22,8 @@ const Message = ({
     attachments,
     audio,
     isTyping,
-    onRemoveMessage
+    onRemoveMessage,
+    setPreviewImage
 }) => {
     return (
     <div className={classNames('message', {
@@ -34,7 +37,7 @@ const Message = ({
             <Popover
                 content={
                     <div className="message__actions">
-                        <Button onClick={onRemoveMessage}>Delete</Button>
+                        <Button onClick={onRemoveMessage} type='danger'>Delete</Button>
                     </div>
                 }
                 trigger='click'>
@@ -68,7 +71,11 @@ const Message = ({
                             <div 
                                 key={Math.random()}
                                 className='message__attachments-item'>
-                                <img src={item.url} alt={item.filename}/>
+                                    <Icon type='eye'/>
+                                    <img
+                                        src={item.url}
+                                        onClick={() => setPreviewImage(item.url)}
+                                        alt={item.filename}/>
                             </div>
                         ))}
                     </div>}

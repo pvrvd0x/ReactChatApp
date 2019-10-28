@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Empty, Icon } from 'antd';
+import { Empty, Icon, Modal } from 'antd';
 import classNames from 'classnames';
 
 import { Message } from '../';
@@ -13,9 +13,10 @@ const Messages = ({
     isLoading,
     items,
     myId,
-    user
+    user,
+    previewImage,
+    setPreviewImage,
 }) => {
-
     return  <div
         ref={baseRef}
         className={classNames("messages", {
@@ -29,11 +30,15 @@ const Messages = ({
                 {items.map(item =>
                     <Message
                         onRemoveMessage={onRemoveMessage.bind(this, item._id)}
+                        setPreviewImage={setPreviewImage}
                         key={Math.random()}
                         {...item}
                         isMe={item.user._id === myId}/>
                 )}</div>)
     }
+    <Modal visible={!!previewImage} onCancel={() => setPreviewImage(null)} footer={null}>
+        <img src={previewImage} style={{width: '100%'}} alt="Preview"/>
+    </Modal>
     </div>
 };
 

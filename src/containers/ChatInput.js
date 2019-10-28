@@ -5,15 +5,22 @@ import { messagesActions, attachmentsActions } from 'redux/actions';
 import { ChatInput as ChatInputBase } from 'components';
 import { uploadApi } from "utils/api";
 
-const ChatInput = ({ 
+const ChatInput = ({
     fetchMessageSend,
     setAttachments,
     removeAttachment,
     dialogs: { currentDialogId },
     attachments,
 }) => {
+    window.navigator.getUserMedia = (window.navigator.getUserMedia ||
+        window.navigator.mozGetUserMedia ||
+        window.navigator.msGetUserMedia ||
+        window.navigator.webkitGetUserMedia);
+
     const [value, setValue] = useState(''),
-        [emojiTabIsActive, setEmojiTabIsActive] = useState(false);
+        [emojiTabIsActive, setEmojiTabIsActive] = useState(false),
+        [isRecording, setIsRecording] = useState(false),
+        [mediaRecorder, setMediaRecorder] = useState(null);
 
     const toggleEmojiTab = () => {
         setEmojiTabIsActive(!emojiTabIsActive);
@@ -24,10 +31,9 @@ const ChatInput = ({
             if (attachments && attachments.length) {
                 fetchMessageSend(value, currentDialogId, attachments.map(item => item.uid));
                 setAttachments([]);
-            }
-            else
+            } else if (value) {
                 fetchMessageSend(value, currentDialogId);
-
+            }
             setValue('');
         }
     };
@@ -40,6 +46,40 @@ const ChatInput = ({
         if (el && !el.contains(e.target)) {
             setEmojiTabIsActive(false);
         }
+    };
+
+    const onRecord = () => {
+        if (navigator.getUserMedia) {
+            navigator.getUserMedia({ audio: true }, onRecording, onError)
+        }
+    };
+
+    const onHideRecording = () => {
+        setIsRecording(false);
+    };
+
+    const onRecording = stream => {
+        const recorder = (new MediaRecorder(stream));
+        setMediaRecorder(recorder);
+
+        recorder.start();
+
+        recorder.onstart = () => {
+            setIsRecording(true);
+        };
+
+        recorder.onstop = () => {
+            setIsRecording(false);
+        };
+
+        recorder.ondataavailable = e => {
+            const audioURL = window.URL.createObjectURL(e.data);
+            new Audio(audioURL).play().then(res => console.log(res));
+        }
+    };
+
+    const onError = err => {
+        console.log('Error: ' + err);
     };
 
     const handleFileUpload = async files => {
@@ -106,6 +146,9 @@ const ChatInput = ({
             handleFileUpload={handleFileUpload}
             attachments={attachments}
             removeAttachment={removeAttachment}
+            isRecording={isRecording}
+            onRecord={onRecord}
+            onStopRecording={onHideRecording}
         />
     )
 };
