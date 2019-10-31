@@ -34,7 +34,7 @@ const DialogsItem = ({
     currentDialogId, 
     isMe,
     onSelect,
-    lastMessage
+    lastMessage,
     }) => (
         <Link to={`/dialogs/${user.fullname.split(' ').join('_')}`}>
             <div className={classNames('dialogs__item', {
@@ -56,9 +56,12 @@ const DialogsItem = ({
                         <p>
                             {lastMessage.text ? reactStringReplace(lastMessage.text, /:(.+?):/g, (match) => (
                                 // match === 'dick' ? <img src={dickSVG} style={{ width:  22, height: 22}} /> :
-                                <Emoji emoji={match} set='google' size={16} />
-                            )) : (<span><Icon type='file-image'/> Image</span>)}
+                                <Emoji emoji={match} set='google' size={16} />))
+                            : lastMessage.attachments.length && lastMessage.attachments[0].ext === 'ogg' ? 
+                            (<span><Icon type='audio'/> Voice Message</span>) 
+                            : (<span><Icon type='file-image'/> Image</span>)}
                         </p>
+                        {console.log(isMe)}
                         {isMe && <IconChecked isMe={isMe} unchecked={lastMessage.unchecked} />}
                         {(lastMessage.unchecked > 0 && !isMe) &&
                             <div className='dialogs__item-content-bottom-unchecked-count'>

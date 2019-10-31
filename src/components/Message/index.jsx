@@ -11,8 +11,6 @@ import { AudioMessage } from '../';
 import './Message.scss';
 // import dickSVG from 'assets/img/dick.svg';
 
-const { TextArea } = Input;
-
 const Message = ({
     user,
     text,
@@ -20,7 +18,7 @@ const Message = ({
     isMe,
     unchecked,
     attachments,
-    audio,
+    isAudio,
     isTyping,
     onRemoveMessage,
     setPreviewImage
@@ -29,7 +27,7 @@ const Message = ({
     <div className={classNames('message', {
         'message--isme'     : isMe,
         'message--is-typing': isTyping,
-        'message--is-audio' : audio,
+        'message--is-audio' : isAudio,
         'message--image'    : attachments && attachments.length === 1 && !text})}>
         <div className="message__content">
             <IconChecked isMe={isMe} unchecked={unchecked}/>
@@ -49,9 +47,9 @@ const Message = ({
                 <Avatar user={user}/>
             </div>
             <div className="message__info">
-                {(!attachments.length || attachments.length > 1 || (attachments.length === 1 && text)) &&
+                {(!attachments.length || (attachments.length > 1 && text) || (attachments.length === 1 && text) || isAudio) &&
                 <div className="message__bubble">
-                    {(text && !audio) && <p className='message__text'>{
+                    {(text && !isAudio) && <p className='message__text'>{
                         reactStringReplace(text, /:(.+?):/g, (match) => (
                             // match === 'dick' ? <img key={Math.random()} src={dickSVG}/> : 
                             <Emoji emoji={match} set='google' size={22} key={Math.random()}/>
@@ -61,14 +59,14 @@ const Message = ({
                         <span className="dot two"/>
                         <span className="dot three"/>
                     </div>}
-                    {audio && <AudioMessage
-                        audio={audio}
+                    {isAudio && <AudioMessage
+                        audio={attachments[0].url}
                         isMe={isMe}/>}
                 </div>}
-                    {(attachments && !!attachments.length) &&
+                    {(attachments && !!attachments.length && !isAudio) &&
                     <div className="message__attachments">
                         {attachments.map(item => (
-                            <div 
+                            <div
                                 key={Math.random()}
                                 className='message__attachments-item'>
                                     <Icon type='eye'/>

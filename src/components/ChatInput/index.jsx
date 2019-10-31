@@ -46,7 +46,7 @@ const ChatInput = ({
                                 className: 'chat-input__actions-upload-photo'
                             }}
                             uploadProps={{
-                                accept: '.jpg,.png,.jpeg,.pdf,.webp,.gif,.bmp',
+                                accept: '.jpg,.png,.jpeg,.pdf,.webp,.gif',
                                 multiple: "multiple"
                             }}>
                             <Button

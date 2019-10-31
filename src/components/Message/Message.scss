@@ -71,7 +71,12 @@
       }
 
       i {
-        line-height: 11;
+        line-height: 12;
+
+        svg {
+          width: 30px;
+          height: 30px;
+        }
       }
     }
   }

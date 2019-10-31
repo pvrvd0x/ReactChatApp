@@ -28,14 +28,27 @@ const ChatInput = ({
 
     const handleSendMessage = (e) => {
         if (e.keyCode === 13 || e.type === 'click') {
+            mediaRecorder.stop();
             if (attachments && attachments.length) {
-                fetchMessageSend(value, currentDialogId, attachments.map(item => item.uid));
+                fetchMessageSend({
+                    text: value,
+                    dialog: currentDialogId,
+                    attachments: attachments.map(item => item.uid)});
                 setAttachments([]);
             } else if (value) {
                 fetchMessageSend(value, currentDialogId);
             }
             setValue('');
+            setIsRecording(false);
         }
+    };
+
+    const sendAudio = audioId => {
+        fetchMessageSend({
+            text: value,
+            dialogId: currentDialogId,
+            attachments: [audioId]
+        })
     };
 
     const handleEmojiSelect = ({ colons }) => {
@@ -55,6 +68,7 @@ const ChatInput = ({
     };
 
     const onHideRecording = () => {
+        mediaRecorder.stop();
         setIsRecording(false);
     };
 
@@ -73,8 +87,10 @@ const ChatInput = ({
         };
 
         recorder.ondataavailable = e => {
-            const audioURL = window.URL.createObjectURL(e.data);
-            new Audio(audioURL).play().then(res => console.log(res));
+            const audioFile = new File([e.data], 'audio.ogg', {type: 'audio/ogg'});
+            uploadApi.upload(audioFile).then(({ data }) => {
+                sendAudio(data.file._id);
+            });
         }
     };
 

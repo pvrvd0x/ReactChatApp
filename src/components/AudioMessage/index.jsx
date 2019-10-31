@@ -23,7 +23,7 @@ const AudioMessage = ({
         } else {
             audioElem.current.pause();
         }
-    }
+    };
 
     useEffect(() => {
         const audioElement = audioElem.current;
