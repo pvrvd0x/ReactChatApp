@@ -29,7 +29,7 @@ const Messages = ({
             : (<div className='messages-wrapper'>
                 {items.map(item =>
                     <Message
-                        isAudio={item.attachments.length && item.attachments[0].ext === 'ogg'}
+                        isAudio={!!item.attachments.length && item.attachments[0].ext === 'ogg'}
                         onRemoveMessage={onRemoveMessage.bind(this, item._id)}
                         setPreviewImage={setPreviewImage}
                         key={Math.random()}

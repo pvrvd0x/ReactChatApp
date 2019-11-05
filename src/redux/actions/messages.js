@@ -34,8 +34,12 @@ const messagesActions = {
                 dispatch(messagesActions.setIsLoading(false));
             })
     },
-    fetchMessageSend: (text, dialogId, attachments) => dispatch => {
-        messagesApi.send(text, dialogId, attachments)
+    fetchMessageSend: ({text, dialogId, attachments}) => dispatch => {
+        messagesApi.send({
+            text,
+            dialogId,
+            attachments
+        })
     },
     fetchMessages: dialogId => dispatch => {
         dispatch(messagesActions.setIsLoading(true));

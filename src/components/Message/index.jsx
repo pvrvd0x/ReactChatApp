@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {Button, Popover, Input, Icon} from 'antd';
+import {Button, Popover, Icon} from 'antd';
 import reactStringReplace from 'react-string-replace';
 import { Emoji } from 'emoji-mart';
 

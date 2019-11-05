@@ -61,7 +61,6 @@ const DialogsItem = ({
                             (<span><Icon type='audio'/> Voice Message</span>) 
                             : (<span><Icon type='file-image'/> Image</span>)}
                         </p>
-                        {console.log(isMe)}
                         {isMe && <IconChecked isMe={isMe} unchecked={lastMessage.unchecked} />}
                         {(lastMessage.unchecked > 0 && !isMe) &&
                             <div className='dialogs__item-content-bottom-unchecked-count'>

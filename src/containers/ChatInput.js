@@ -28,15 +28,21 @@ const ChatInput = ({
 
     const handleSendMessage = (e) => {
         if (e.keyCode === 13 || e.type === 'click') {
-            mediaRecorder.stop();
+            e.preventDefault()
+
+            if (mediaRecorder) mediaRecorder.stop();
+
             if (attachments && attachments.length) {
                 fetchMessageSend({
                     text: value,
-                    dialog: currentDialogId,
+                    dialogId: currentDialogId,
                     attachments: attachments.map(item => item.uid)});
                 setAttachments([]);
             } else if (value) {
-                fetchMessageSend(value, currentDialogId);
+                fetchMessageSend({
+                    text: value,
+                    dialogId: currentDialogId
+                });
             }
             setValue('');
             setIsRecording(false);
