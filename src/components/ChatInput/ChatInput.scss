@@ -9,12 +9,21 @@
         align-items: center;
         background-color: #fff;
 
+        @media screen
+            and (max-device-width: 480px) {
+            padding: 0 0 10px;
+        }
     }
 
     .ant {
         &-input {
             margin: 0 20px;
             width: 85%;
+
+            @media screen and (max-device-width: 480px) {
+                width: 80%;
+                margin: 9px 0 0;
+            }
         }
 
         &-btn {
@@ -25,6 +34,16 @@
             &:hover {
                 color: $cyan;
                 opacity: 1;
+            }
+
+            @media screen and (max-device-width: 480px) {
+                width: 45px;
+            }
+        }
+
+        &icon {
+            @media screen and (max-device-width: 480px) {
+                width: 45px;
             }
         }
 
@@ -66,6 +85,12 @@
 
         .emoji-mart {
             position: absolute;
+            $self: &;
+
+            @media screen
+                and (max-device-width: 480px) {
+                width: 290px;
+            }
 
             &::after,
             &::before {
@@ -75,6 +100,11 @@
                 width: 0;
                 height: 0;
                 left: 7.5%;
+
+                @media screen
+                    and (max-device-width: 480px) {
+                    left: 1%;
+                }
             }
 
             &::after {
@@ -146,6 +176,11 @@
         width: 11.5%;
         display: flex;
         justify-content: space-between;
+
+        @media screen and (max-device-width: 480px) {
+            width: 25%;
+            justify-content: normal;
+        }
 
         &-upload-photo {
             &:hover {

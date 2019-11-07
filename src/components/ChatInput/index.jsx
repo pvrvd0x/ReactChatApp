@@ -31,7 +31,7 @@ const ChatInput = ({
                         <div className={classNames("chat-input__emoji-picker", {
                             'chat-input__emoji-picker--visible': emojiTabIsActive,
                         })}>
-                            <Picker set='google' onSelect={(emoji) => handleEmojiSelect(emoji)}/>
+                            <Picker set='google' style={{width: 290}} onSelect={(emoji) => handleEmojiSelect(emoji)}/>
                         </div>
                         <Button
                             onClick={toggleEmojiTab}
@@ -58,7 +58,7 @@ const ChatInput = ({
                     {!isRecording &&
                     <TextArea
                         style={{height: 20}}
-                        autosize={{ maxRows: 6 }}
+                        autosize={{ maxRows: window.innerWidth <= 480 ? 2 : 6 }}
                         onChange={ e => setValue(e.target.value) }
                         onKeyUp={ handleSendMessage }
                         placeholder="Input your message"

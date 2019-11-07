@@ -68,7 +68,6 @@ const Sidebar = ({
     };
 
     return(
-    <div>
         <SidebarBase
             user={user}
             onShow={handleShow}
@@ -84,7 +83,6 @@ const Sidebar = ({
             users={users}
             messageText={messageText}
             />
-    </div>
     )
 }
 

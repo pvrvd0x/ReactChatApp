@@ -1,5 +1,10 @@
 @import '~styles/variables';
 
+#root {
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
 .home {
     height: 100%;
 }
@@ -12,9 +17,20 @@
     margin: 0 auto;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.04204);
 
+    @media screen
+        and (max-device-width: 480px) {
+        transition: transform .3s ease-in-out;
+        width: 200vw;
+    }
+
     &__sidebar {
         width: 356px;
         padding: 15px;
+
+        @media screen
+        and (max-device-width: 480px) {
+            width: 50%;
+        }
 
         &-header {
             display: flex;
@@ -55,6 +71,12 @@
         position: relative;
         border-right: 15px solid white;
 
+        @media screen
+            and (max-device-width: 480px) {
+            width: 50%;
+            padding-left: 15px;
+        }
+
         &-header {
             background-color: #fff;
             padding: 10px;
@@ -62,6 +84,22 @@
             border-radius: 2px;
             position: relative;
             height: 60px;
+
+            @media screen
+                and (max-device-width: 480px) {
+                display: flex;
+                padding: 10px 0;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .ant-btn {
+              display: none;
+
+              @media screen and (max-device-width: 480px) {
+                display: block;
+              }
+            }
         }
 
         &-header-info {
@@ -97,5 +135,11 @@
         right: 15px;
         top: 8px;
         cursor: pointer;
+
+        @media screen and (max-device-width: 480px) {
+          position: relative;
+          top: 0;
+          right: 0;
+        }
     }
 }

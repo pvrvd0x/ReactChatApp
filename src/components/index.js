@@ -13,3 +13,5 @@ export { default as Status }        from './Status';
 export { default as VerifyEmail }   from './VerifyEmail';
 export { default as Sidebar }       from './Sidebar';
 export { default as FilesUploader } from './FilesUploader';
+export { default as GoBackButton }  from './GoBackButton';
+export { default as AccountMenu }   from './AccountMenu';

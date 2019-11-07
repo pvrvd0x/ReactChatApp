@@ -28,7 +28,7 @@ const ChatInput = ({
 
     const handleSendMessage = (e) => {
         if (e.keyCode === 13 || e.type === 'click') {
-            e.preventDefault()
+            e.preventDefault();
 
             if (mediaRecorder) mediaRecorder.stop();
 

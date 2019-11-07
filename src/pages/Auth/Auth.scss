@@ -4,9 +4,20 @@
   align-items: center;
   height: 100%;
 
+  &__content > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__top {
     text-align: center;
     margin-bottom: 50px;
+
+    @media screen and (max-device-width: 480px) {
+      margin-bottom: 30px;
+    }
 
     h2 {
       font-size: 28px;
@@ -31,6 +42,11 @@
   
   .block {
     width: 430px;
+
+    @media screen and (max-device-width: 480px) {
+      width: 100%;
+      padding: 25px 25px 1px;
+    }
   }
 
   &__register-link {
