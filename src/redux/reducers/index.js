@@ -4,7 +4,8 @@ const reducers = [
     'messages',
     'dialogs',
     'user',
-]
+    'attachments',
+];
 
 export default combineReducers(
     reducers.reduce((initial, name) => {

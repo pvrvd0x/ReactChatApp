@@ -44,11 +44,11 @@ const Dialogs = ({
 
     socket.on('SERVER:DIALOG_CREATED', () => {
         fetchDialogs();
-    })
+    });
 
     socket.on('MESSAGES:NEW_MESSAGE', () => {
         fetchDialogs();
-    })
+    });
 
     return (
         <BaseDialogs

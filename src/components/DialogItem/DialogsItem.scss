@@ -7,13 +7,16 @@
         padding: 10px 20px 10px 10px;
         transition: background-color .2s ease-in, color .2s ease-in;
         cursor: pointer;
-        border-radius: 5px;
+        border-radius: 3px;
         width: 100%;
 
-        &.active,
+        &--selected,
         &:hover {
-            background-color: #66b3f9;
-            color: #ffffff;
+            background-color: #86c6fb;
+
+            #{$item}-content-top {
+                color: #ffffff;
+            }
         }
 
         &--online {
@@ -32,15 +35,6 @@
                     right: 0;
                     bottom: 0;
                 }
-            }
-        }
-
-        &--selected {
-            background-color: $cyan;
-            color: #ffffff;
-
-            &:hover {
-                background-color: $cyan;
             }
         }
 
@@ -65,6 +59,7 @@
 
             &-top {
                 display: flex;
+                transition: .3s ease-in;
 
                 b {
                     font-weight: 900;
@@ -89,11 +84,14 @@
                 position: relative;
 
                 p {
+                    display: flex;
+                    align-items: center;
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     overflow: hidden;
-                    width: 210px;
-                    opacity: .4;
+                    width: 160px;
+                    color: lightgray;
+                    padding: 5px 0;
                 }
 
                 &-unchecked-count {
@@ -111,6 +109,14 @@
                     bottom: auto;
                 }
             }
+        }
+
+        .emoji-mart-emoji {
+            height: 22px;
+        }
+
+        &-content-top {
+            color: rgba(0, 0, 0, .65);
         }
     }
 }

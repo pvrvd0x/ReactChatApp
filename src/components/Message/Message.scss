@@ -64,14 +64,26 @@
   }
 
   &--image {
-    #{$self}__attachments-item img{
-      width: 100px;
-      height: 100px;
+    #{$self}__attachments-item {
+      img {
+        width: 150px;
+        height: 150px;
+      }
+
+      i {
+        line-height: 12;
+
+        svg {
+          width: 30px;
+          height: 30px;
+        }
+      }
     }
   }
 
   &--isme {
     flex-direction: row-reverse;
+    transform-origin: bottom right;
 
     #{$self}__audio-duration {
         opacity: 1;
@@ -86,9 +98,10 @@
       flex-direction: row-reverse;
     }
 
+    #{$self}__avatar,
+    #{$self}__avatar .avatar,
     #{$self}__avatar img {
       margin-right: 0;
-      margin-left: 13px;
     }
 
     #{$self}__bubble {
@@ -146,47 +159,91 @@
     max-width: 440px;
     right: 0;
 
+    &:hover {
+      #{$self}__icon-actions {
+        display: block;
+      }
+    }
+
     @media (max-width: 768px) {
       max-width: 85%;
     }
   }
 
-  &__icon-unchecked,
-  &__icon-checked {
-    position: absolute;
-    bottom: 20px;
-    right: -25px;
-  }
+  &__icon {
+    &-unchecked,
+    &-checked {
+      position: absolute;
+      bottom: 20px;
+      right: -25px;
+    }
 
-  &__icon-unchecked {
-    width: 16px;
-    height: 16px;
-  }
+    &-unchecked {
+      width: 16px;
+      height: 16px;
+    }
 
-  &__icon-checked {
-    width: 23px;
-    height: 23px;
+    &-checked {
+      width: 23px;
+      height: 23px;
+    }
+
+    &-actions {
+      display: none;
+      position: absolute;
+      left: -35px;
+      transform: rotate(90deg);
+    }
   }
 
   &__attachments {
     display: flex;
-    margin: 10px 0;
+    flex-wrap: wrap;
+    margin-top: 5px;
 
     &-item {
       display: flex;
       margin-right: 5px;
+      position: relative;
+      cursor: pointer;
+
+      &:hover {
+        i {
+          opacity: 1;
+        }
+      }
+
+      i {
+        pointer-events: none;
+        border-radius: 8px;
+        background-color: rgba(0, 0, 0, .5);
+        color: #ffffff;
+        display: block;
+        opacity: 0;
+        transition: opacity .3s ease-out;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        line-height: 4.5;
+      }
 
       img {
-        width: 45px;
-        height: 45px;
+        cursor: pointer;
+        width: 64px;
+        height: 64px;
         border-radius: 8px;
       }
     }
   }
 
+  &__actions button {
+    width: 100%
+  }
+
   &__avatar {
     display: flex;
     flex-direction: column-reverse;
+    max-height: 67px;
 
     & > .avatar--empty,
     img {
@@ -216,5 +273,9 @@
     margin-top: 5px;
     font-size: 12px;
     opacity: .4;
+  }
+
+  .emoji-mart-emoji {
+    height: 22px;
   }
 }

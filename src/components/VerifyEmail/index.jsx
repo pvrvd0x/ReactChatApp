@@ -31,10 +31,10 @@ const VerifyEmail = ({ location, history }) => {
                 setStatusMessage('Confirmation error');
             })
         }
-    })
+    });
 
     return (
-        <Block>
+        <Block className={'verify-block'}>
             <Result
                 status={status}
                 title={status.toUpperCase()}

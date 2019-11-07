@@ -20,19 +20,19 @@ const Sidebar = ({
 
     const handleShow = () => {
         setIsVisible(true);
-    }
+    };
 
     const handleClose = () => {
         setIsVisible(false);
-    }
+    };
 
     const handleInputValueChange = value => {
         setInputValue(value);
-    }
+    };
 
     const onSelectUser = userId => {
         setSelectedUserId(userId);
-    }
+    };
 
     const onAddDialogs = () => {
         dialogsApi
@@ -48,11 +48,11 @@ const Sidebar = ({
             .catch(() => {
                 setIsSearching(false);
             })
-    }
+    };
 
     const onTextAreaChange = e => {
         setMessageText(e.target.value);
-    }
+    };
 
     const onSearch = value => {
         setIsSearching(true);
@@ -65,10 +65,9 @@ const Sidebar = ({
             .catch(() => {
                 setIsSearching(true);
             })
-    }
+    };
 
     return(
-    <div>
         <SidebarBase
             user={user}
             onShow={handleShow}
@@ -84,7 +83,6 @@ const Sidebar = ({
             users={users}
             messageText={messageText}
             />
-    </div>
     )
 }
 

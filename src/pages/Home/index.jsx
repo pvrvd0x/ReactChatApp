@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 
-import { Status, Sidebar } from 'containers';
-import { Messages, ChatInput } from 'containers';
+import { Status, Sidebar, Messages, ChatInput } from 'containers';
+import { Avatar, GoBackButton } from 'components';
 
 import './Home.scss';
 
 const Home = ({
     user,
-    dialog
+    attachments,
 }) => {
-    const [myId, setMyId] = useState('');
+    const [myInfo, setMyInfo] = useState('');
 
     useEffect(() => {
         if (user.data) {
-            setMyId(user.data._id);
+            setMyInfo(user.data);
         }
-    }, [user.data])
+    }, [user.data]);
 
     return (
     <section className="home">
@@ -24,16 +25,17 @@ const Home = ({
             <Sidebar/>
             <div className="chat__dialog">
                 <div className="chat__dialog-header">
+                    <GoBackButton/>
                     <Status/>
-                    <div className="chat__dialog-options-wrapper">
-                        <button className="chat__dialog-options">
-
-                        </button>
-                    </div>
+                    {myInfo && !myInfo.token && <div className="chat__account">
+                        <Avatar user={myInfo}/>
+                    </div>}
                 </div>
-                <div className="chat__dialog-messages">
-                    <Messages 
-                        myId={myId}/>
+                <div className="chat__dialog-messages" style={{
+                    height: `calc(100% - ${attachments.items.length >= 1 ? 263: 138}px)`
+                }}>
+                    <Messages
+                        myId={myInfo._id || ''}/>
                 </div>
                 <ChatInput />
             </div>
@@ -42,5 +44,5 @@ const Home = ({
 };
 
 export default connect(
-    ({ user, dialog }) => ({user, dialog})
-    )(Home);
+    ({user, attachments}) => ({user, attachments})
+)(withRouter(Home));

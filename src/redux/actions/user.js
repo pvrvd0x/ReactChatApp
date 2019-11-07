@@ -16,11 +16,9 @@ const actions = {
             .then(({ data }) => {
                 dispatch(actions.setUserData(data));
             })
-            .catch(err => {
-                if (err.response.status === 403) {
-                    dispatch(actions.setIsAuthed(false));
-                    delete window.localStorage.token;
-                }
+            .catch(() => {
+                dispatch(actions.setIsAuthed(false));
+                delete window.localStorage.token;
             });
     },
     fetchUserRegister: postData => dispatch => {
@@ -37,7 +35,7 @@ const actions = {
                         openNotification({
                             title: 'success',
                             type: 'success'
-                        })
+                        });
 
                         window.axios.defaults.headers.common['token'] = token;
                         window.localStorage['token'] = token;

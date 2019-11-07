@@ -1,5 +1,10 @@
 @import '~styles/variables';
 
+#root {
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
 .home {
     height: 100%;
 }
@@ -10,11 +15,22 @@
     background-color: #fff;
     width: 1140px;
     margin: 0 auto;
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.04204);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.04204);
+
+    @media screen
+        and (max-device-width: 480px) {
+        transition: transform .3s ease-in-out;
+        width: 200vw;
+    }
 
     &__sidebar {
+        width: 356px;
         padding: 15px;
-        border-right: 1px solid rgba(0, 0, 0, .15);
+
+        @media screen
+        and (max-device-width: 480px) {
+            width: 50%;
+        }
 
         &-header {
             display: flex;
@@ -27,7 +43,7 @@
         }
 
         &-search {
-            margin: 10px 0;
+            margin: 18px 0;
         }
 
         &-dialogs {
@@ -53,14 +69,37 @@
     &__dialog {
         width: 76%;
         position: relative;
+        border-right: 15px solid white;
+
+        @media screen
+            and (max-device-width: 480px) {
+            width: 50%;
+            padding-left: 15px;
+        }
 
         &-header {
+            background-color: #fff;
             padding: 10px;
-            border: 1px solid rgba(0, 0, 0, .15);
-            border-left: 0;
-            border-right: 0;
             margin-bottom: 5px;
             border-radius: 2px;
+            position: relative;
+            height: 60px;
+
+            @media screen
+                and (max-device-width: 480px) {
+                display: flex;
+                padding: 10px 0;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .ant-btn {
+              display: none;
+
+              @media screen and (max-device-width: 480px) {
+                display: block;
+              }
+            }
         }
 
         &-header-info {
@@ -76,51 +115,31 @@
             font-size: 20px;
         }
 
-        &-options {
-            &-wrapper {
-                right: 0;
-                top: 0;
-                position: absolute;
-                cursor: pointer;
-                width: 50px;
-                height: 50px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            &,
-            &::after,
-            &::before {
-                cursor: pointer;
-                position: relative;
-                border: 0;
-                content: '';
-                display: block;
-                padding: 0;
-                background-color: rgba(0, 0, 0, .25);
-                border-radius: 50%;
-                width: 5px;
-                height: 5px;
-            }
-
-            &::after {
-                left: 10px;
-                top: -5px;
-            }
-
-            &::before {
-                right: 10px;
-            }
-        }
-
         &-messages {
-            height: calc(100% - 130px);
+            border-radius: 5px;
+            background-color: #f7f7f7;
+            overflow: hidden;
+            transition: height .3s;
         }
 
         .ant-empty {
             position: relative;
             top: 25vh;
+        }
+    }
+
+    &__account {
+        width: 44px;
+        height: 44px;
+        position: absolute;
+        right: 15px;
+        top: 8px;
+        cursor: pointer;
+
+        @media screen and (max-device-width: 480px) {
+          position: relative;
+          top: 0;
+          right: 0;
         }
     }
 }

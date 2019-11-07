@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 
 import { messagesActions } from "redux/actions";
@@ -9,15 +9,21 @@ const Messages = ({
     items,
     fetchMessages,
     currentDialogId,
+    removeMessageById,
+    fetchMessageChange,
     addMessage,
     isLoading,
-    myId
+    myId,
+    user
 }) => {
     const messagesRef = useRef(null);
 
+    const [previewImage, setPreviewImage] = useState(null);
+
+
     const onDialogChange = data => {
         addMessage(data);
-    }
+    };
 
     useEffect(() => {
         if (currentDialogId) {
@@ -25,12 +31,9 @@ const Messages = ({
         }
 
         socket.on('MESSAGES:NEW_MESSAGE', onDialogChange);
-    
-        // socket.on('MESSAGES:MESSAGE_DELETED', onDialogChange)
 
         return () => {
             socket.removeListener('MESSAGES:NEW_MESSAGE', onDialogChange);
-            // socket.removeListener('MESSAGES:MESSAGE_DELETED', onDialogChange);
         }
     }, [currentDialogId]);
 
@@ -40,18 +43,24 @@ const Messages = ({
 
     return (
         <BaseMessages
+            user={user}
+            onRemoveMessage={removeMessageById}
             myId={myId}
             baseRef={messagesRef}
             isLoading={isLoading}
-            items={items}/>
+            items={items}
+            setPreviewImage={setPreviewImage}
+            previewImage={previewImage}
+        />
     )
 };
 
 export default connect(
-    ({ dialogs, messages }) => ({
+    ({ dialogs, user, messages }) => ({
         currentDialogId: dialogs.currentDialogId,
         items: messages.items,
-        isLoading: messages.isLoading
+        isLoading: messages.isLoading,
+        user: user.data,
     }),
     messagesActions
 )(Messages);
