@@ -26,6 +26,7 @@ const Avatar = ({ user, style }) => {
         return (
             <Fragment>
                 <img
+                    className='avatar'
                     style={style}
                     src={user.avatar}
                     alt={`${user.fullname} avatar`}
