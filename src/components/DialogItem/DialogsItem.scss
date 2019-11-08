@@ -9,6 +9,7 @@
         cursor: pointer;
         border-radius: 3px;
         width: 100%;
+        animation: fade-in .5s ease both alternate;
 
         &--selected,
         &:hover {
@@ -117,6 +118,16 @@
 
         &-content-top {
             color: rgba(0, 0, 0, .65);
+        }
+    }
+
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
         }
     }
 }

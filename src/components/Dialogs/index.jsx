@@ -23,7 +23,7 @@ const Dialogs = ({
                 value={inputValue}/>
         </div>
         <div className="dialogs">
-        {items.length ? orderBy(items, ['createdAt'], ['desc']).map(item => (
+        {items.length ? orderBy(items, [{lastMessage: 'createdAt'}], ['desc']).map(item => (
             <DialogsItem
                 user={item.author._id !== myId ? item.author : item.partner}
                 isMe={item.lastMessage.user._id === myId}

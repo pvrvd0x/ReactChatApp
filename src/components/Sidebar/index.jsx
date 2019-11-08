@@ -1,9 +1,9 @@
 import React from 'react';
-import { Icon, Modal, Button, Select, Input, Form } from 'antd';
+import { Modal, Button, Select, Input, Form } from 'antd';
 
 import { Dialogs } from 'containers';
-// import { Avatar } from 'components';
 
+import logo from 'assets/img/logo512.png';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -24,12 +24,6 @@ const Sidebar = ({
     messageText,
 }) => {
     const options = users.map(user => <Option key={user._id} style={{display: 'flex', alignItems: 'center'}}>
-        {/* <Avatar style={{
-            width: '30px',
-            height: '30px',
-            fontSize: '14px',
-            marginRight: '5px'
-        }}
         user={user}/> */}
         {user.fullname}
         <span style={{
@@ -44,9 +38,9 @@ const Sidebar = ({
     <div className="chat__sidebar">
         <div className="chat__sidebar-header">
             <div>
-                <Icon type="team" style={{color: 'rgba(0, 0, 0, .6)'}}/>
-                <span>
-                    Dialogs List
+                <img className="chat__sidebar-logo" src={logo} alt="Logo"/>
+                <span className="chat__sidebar-name">
+                    Slim-Chat <span className="chat__sidebar-version">v0.2.0</span>
                 </span>
             </div>
             <Button

@@ -62,8 +62,6 @@ const ChatInput = ({
     };
 
     const handleOutsideClick = (el, e) => {
-        console.log('===============');
-        console.log(el && !(el.contains(e.target) || e.target.closest('.chat-input__emoji-picker') || e.target.classList.contains('chat-input__smile-btn')));
         if (el && !(el.contains(e.target) || e.target.closest('.chat-input__emoji-picker') || e.target.classList.contains('chat-input__smile-btn'))) {
             setEmojiTabIsActive(false);
         }

@@ -10,7 +10,6 @@ import { Avatar } from '../';
 
 import { IconChecked } from '../';
 import './DialogsItem.scss';
-// import dickSVG from 'assets/img/dick.svg';
 
 const getDate = time => {
     time = new Date(time);
@@ -55,8 +54,7 @@ const DialogsItem = ({
                     <div className="dialogs__item-content-bottom">
                         <p>
                             {lastMessage.text ? reactStringReplace(lastMessage.text, /:(.+?):/g, (match) => (
-                                // match === 'dick' ? <img src={dickSVG} style={{ width:  22, height: 22}} /> :
-                                <Emoji emoji={match} set='google' size={16} />))
+                                <Emoji emoji={match} key={match + Math.round(Math.random() * 10)} set='google' size={16} />))
                             : lastMessage.attachments.length && lastMessage.attachments[0].ext === 'ogg' ? 
                             (<span><Icon type='audio'/> Voice Message</span>) 
                             : (<span><Icon type='file-image'/> Image</span>)}
