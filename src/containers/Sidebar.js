@@ -59,6 +59,7 @@ const Sidebar = ({
         userApi
             .findUsers(value)
             .then(({ data }) => {
+                console.log(data);
                 setIsSearching(false);
                 setUsers(data);
             })
@@ -84,6 +85,6 @@ const Sidebar = ({
             messageText={messageText}
             />
     )
-}
+};
 
 export default connect(({ user }) => ({user: user.data}), dialogsActions)(Sidebar);

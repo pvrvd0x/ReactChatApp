@@ -24,7 +24,6 @@ const Sidebar = ({
     messageText,
 }) => {
     const options = users.map(user => <Option key={user._id} style={{display: 'flex', alignItems: 'center'}}>
-        user={user}/> */}
         {user.fullname}
         <span style={{
             color: 'lightgray',
@@ -79,8 +78,7 @@ const Sidebar = ({
                             defaultActiveFirstOption={false}
                             showArrow={false}
                             filterOption={false}
-                            showSearch
-                            >
+                            showSearch>
                             {options}
                         </Select>
                     </Form.Item>
