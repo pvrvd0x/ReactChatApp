@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { sortBy } from 'lodash';
 
 import { dialogsActions } from "redux/actions";
 import { Dialogs as BaseDialogs } from 'components';
@@ -50,10 +51,12 @@ const Dialogs = ({
         fetchDialogs();
     });
 
+    const dialogsArray = filtered.sort((a, b) => (new Date(b.lastMessage.createdAt) - new Date(a.lastMessage.createdAt)));
+
     return (
         <BaseDialogs
             myId={myId}
-            items={filtered}
+            items={dialogsArray}
             onSearch={onChangeInput}
             inputValue={inputValue}
             onSelectDialog={setCurrentDialogId}

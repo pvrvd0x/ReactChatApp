@@ -9,7 +9,6 @@ import { DateInfo, IconChecked, Avatar } from '../';
 import { AudioMessage } from '../';
 
 import './Message.scss';
-// import dickSVG from 'assets/img/dick.svg';
 
 const Message = ({
     user,
@@ -51,7 +50,6 @@ const Message = ({
                 <div className="message__bubble">
                     {(text && !isAudio) && <p className='message__text'>{
                         reactStringReplace(text, /:(.+?):/g, (match) => (
-                            // match === 'dick' ? <img key={Math.random()} src={dickSVG}/> : 
                             <Emoji emoji={match} set='google' size={22} key={Math.random()}/>
                         ))}</p>}
                     {isTyping && <div className="message__typing">

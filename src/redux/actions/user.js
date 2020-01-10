@@ -18,7 +18,7 @@ const actions = {
             })
             .catch(() => {
                 dispatch(actions.setIsAuthed(false));
-                delete window.localStorage.token;
+                delete window.sessionStorage.token;
             });
     },
     fetchUserRegister: postData => dispatch => {
@@ -38,7 +38,7 @@ const actions = {
                         });
 
                         window.axios.defaults.headers.common['token'] = token;
-                        window.localStorage['token'] = token;
+                        window.sessionStorage['token'] = token;
                         dispatch(actions.fetchUserData());
                         dispatch(actions.setIsAuthed(true));
 

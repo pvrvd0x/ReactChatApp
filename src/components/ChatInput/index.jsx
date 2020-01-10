@@ -6,7 +6,6 @@ import classNames from 'classnames';
 
 import { FilesUploader } from '..';
 import './ChatInput.scss';
-// import dickSVG from 'assets/img/dick.svg';
 
 const { TextArea } = Input;
 
@@ -39,7 +38,6 @@ const ChatInput = ({
                             shape='circle'
                             className="chat-input__smile-btn"
                             icon="smile"/>
-                        {/* <img src={dickSVG} className='chat-input__send-dick' onClick={() => setValue(':dick:')}/> */}
                         <UploadField
                             onFiles={handleFileUpload}
                             containerProps={{
@@ -58,7 +56,7 @@ const ChatInput = ({
                     {!isRecording &&
                     <TextArea
                         style={{height: 20}}
-                        autosize={{ maxRows: window.innerWidth <= 480 ? 2 : 6 }}
+                        autoSize={{ maxRows: window.innerWidth <= 480 ? 2 : 6 }}
                         onChange={ e => setValue(e.target.value) }
                         onKeyUp={ handleSendMessage }
                         placeholder="Input your message"

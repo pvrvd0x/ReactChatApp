@@ -14,7 +14,7 @@ const AccountMenu = ({
             visible={isVisible}
             placement='bottom'
             content={
-                <Button type='danger' onClick={() => {window.localStorage.clear(); window.location.reload()}}>Log Out</Button>
+                <Button type='danger' onClick={() => {window.sessionStorage.clear(); window.location.reload()}}>Log Out</Button>
             }
         />
     )

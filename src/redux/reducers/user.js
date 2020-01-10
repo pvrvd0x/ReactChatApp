@@ -1,9 +1,9 @@
-const windowLocalStorageToken = window.localStorage.token === 'undefined' ? undefined : window.localStorage.token;
+const windowSessionStorageToken = window.sessionStorage.token === 'undefined' ? undefined : window.localStorage.token;
 
 const initialState = {
     data: null,
-    token: windowLocalStorageToken,
-    isAuthed: !!windowLocalStorageToken,
+    token: windowSessionStorageToken,
+    isAuthed: !!windowSessionStorageToken,
 };
 
 const user = (state = initialState, {type, payload}) => {
@@ -13,7 +13,7 @@ const user = (state = initialState, {type, payload}) => {
                 ...state,
                 data: payload,
                 isAuthed: true,
-                token: window.localStorage.token,
+                token: window.sessionStorage.token,
             };
         case 'USER:SET_IS_AUTHED':
             return {

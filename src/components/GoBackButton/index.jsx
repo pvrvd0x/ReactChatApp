@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon } from 'antd';
+import { Button } from 'antd';
 
 const GoBackButton = () => {
     const handleClick = () => {

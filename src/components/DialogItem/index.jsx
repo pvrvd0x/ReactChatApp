@@ -53,11 +53,12 @@ const DialogsItem = ({
                     </div>
                     <div className="dialogs__item-content-bottom">
                         <p>
-                            {lastMessage.text ? reactStringReplace(lastMessage.text, /:(.+?):/g, (match) => (
-                                <Emoji emoji={match} key={match + Math.round(Math.random() * 10)} set='google' size={16} />))
-                            : lastMessage.attachments.length && lastMessage.attachments[0].ext === 'ogg' ? 
-                            (<span><Icon type='audio'/> Voice Message</span>) 
-                            : (<span><Icon type='file-image'/> Image</span>)}
+                            {lastMessage.text ?
+                                reactStringReplace(lastMessage.text, /:(.+?):/g, (match) => (
+                                    <Emoji emoji={match} key={match + Math.round(Math.random() * 10)} set='google' size={16} />))
+                                : lastMessage.attachments.length && lastMessage.attachments[0].ext === 'ogg' ?
+                                    (<span><Icon type='audio'/> Voice Message</span>)
+                                    : (<span><Icon type='file-image'/> Image</span>)}
                         </p>
                         {isMe && <IconChecked isMe={isMe} unchecked={lastMessage.unchecked} />}
                         {(lastMessage.unchecked > 0 && !isMe) &&
