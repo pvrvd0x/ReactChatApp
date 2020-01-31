@@ -11,7 +11,7 @@ const Auth = () => (
         <div className="auth__content">
             <Route exact path={['/', '/login']} component={LoginForm}/>
             <Route exact path='/register' component={RegisterForm}/>
-            <Route exact path='/register/verify' component={VerifyEmail}/>
+            <Route path='/register/verify' component={VerifyEmail}/>
         </div>
     </section>
 );
