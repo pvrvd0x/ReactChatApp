@@ -1,4 +1,4 @@
-const windowSessionStorageToken = window.sessionStorage.token === 'undefined' ? undefined : window.localStorage.token;
+const windowSessionStorageToken = window.sessionStorage.token === 'undefined' ? undefined : window.sessionStorage.token;
 
 const initialState = {
     data: null,
